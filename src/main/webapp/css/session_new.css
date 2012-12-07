@@ -1,0 +1,91 @@
+body {
+    background: url('/static/img/bgnoise.png');
+    background-color: #EBF0F5;
+}
+
+h1 {
+    text-decoration: none;
+    color: #444C54;
+    text-shadow: 0px 0px 3px white;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0 0 18px 0;
+}
+
+h2 {
+    font-size: 14px;
+}
+
+header {
+    display: none;
+}
+
+#content {
+    padding: 20px;
+    width: 380px;
+    background-color: #fff;
+    margin: 120px auto;
+    border-radius: 4px;
+    border-color: #eee;
+    -webkit-box-shadow: 0px 1px 3px #858585;
+    box-shadow: 0px 1px 3px #858585;
+}
+
+table {
+    display: inline-block;
+}
+
+form {
+    text-align: center;
+}
+
+form input[type="text"], form input[type="password"] {
+    padding: 3px;
+    height: 20px;
+    font-size: 14px;
+}
+
+form table {
+    margin-bottom: 0px;
+}
+
+hr {
+    margin: 24px 0px 12px 0;
+}
+
+form table tr {
+    margin: 5px auto;
+    height: 40px;
+}
+
+form table th, form table td{
+    vertical-align: middle;
+    text-align: right;
+}
+form table td {
+    padding: 0px 5px;
+}
+
+#login {
+    display: block;
+    margin: 0px auto;
+}
+
+ul#bottom-nav {
+    list-style: none;
+    margin: 0px;
+}
+ul#bottom-nav li {
+    text-align: right;
+}
+ul#bottom-nav li a, ul#bottom-nav li a:hover, ul#bottom-nav li a:visited {
+    text-decoration: none;
+}
+
+.error {
+    color: #ee0000;
+}
+
+.errorlist {
+    display: none;
+}
