@@ -3,8 +3,7 @@ package br.com.engaplicada.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import br.com.engaplicada.util.HibernateUtil;
 import br.com.engaplicada.util.RepositoryException;
 
 /**
@@ -13,12 +12,13 @@ import br.com.engaplicada.util.RepositoryException;
  */
 public abstract class OdontosystemGenericDaoImpl<T> implements OdontosystemGenericDao<T>{
 
-	@PersistenceContext(name="odontosystemPU")
 	protected EntityManager entityManager;
 	private Class<T> entityClass;
 
 	public OdontosystemGenericDaoImpl(Class<T> entityClass) {
 		this.entityClass = entityClass;
+		this.entityManager = HibernateUtil.getInstance().getFactory()
+				.createEntityManager();
 	}
 
 	public void save(T entity) throws RepositoryException {
@@ -53,7 +53,11 @@ public abstract class OdontosystemGenericDaoImpl<T> implements OdontosystemGener
 	public abstract List<T> findAll();
 	
 	public abstract T findByName(String name);
-
+	
+	public void setEntityManeger(EntityManager entityManeger){
+		this.entityManager = entityManeger;
+	}
+	
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

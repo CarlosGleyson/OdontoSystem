@@ -41,9 +41,6 @@ public class Usuario implements Serializable {
 	@Column(name="login",nullable=false)
 	private String login;
 	
-	@Column(name="celular",nullable=false)
-	private String celular;
-	
 	@Column(name="ativo",nullable=false)
 	private boolean ativo;
 	
@@ -95,14 +92,6 @@ public class Usuario implements Serializable {
 
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
 	}
 
 	public boolean isAtivo() {

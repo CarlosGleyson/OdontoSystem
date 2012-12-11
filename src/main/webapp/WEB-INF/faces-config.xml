@@ -7,8 +7,33 @@
     http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 
-<application>
-	<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-</application>
+    <!-- @Paulo Neto -->
+    
+    <!--  Login -->
+    <navigation-rule>
+    	<from-view-id>login.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>inicio</from-outcome>
+    		<to-view-id>/admin/inicio.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+    	<from-view-id>login.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>loginFail</from-outcome>
+    		<to-view-id>loginFail.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+    	<from-view-id>login.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>cadastroUsuario</from-outcome>
+    		<to-view-id>/admin/cadastroUsuario.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    
+    <!--  /Login -->
 
 </faces-config>

@@ -1,15 +1,11 @@
 package br.com.engaplicada.dao;
 
 import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import br.com.engaplicada.util.RepositoryException;
 
 /**
  * @author Paulo Neto
  * */
-@Repository("usuarioDao")
 public interface OdontosystemGenericDao<T> {
 	public void save(T entity)  throws RepositoryException;
 

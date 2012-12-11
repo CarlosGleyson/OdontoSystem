@@ -1,11 +1,9 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="img/favicon.ico" rel="shortcut icon"/>
@@ -13,18 +11,17 @@
 
 	
 	
-	<link rel="stylesheet" href="css/bootstrap.css"/>
-    
+
+    <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/bootstrap-responsive.css"/>
-    
     <link rel="stylesheet" href="css/app.css"/>
     
-    <!-- JQUERY -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
-    
     <script src="js/jquery.easing.1.3.js"/>
-    
     <script src="js/bootstrap.js"/>
+    <link href="css/estilo.css" rel="stylesheet"/>
+    <script src="js/calendario.js"/>
+    <script src="js/diretor.js"/>
 
     
     <link rel="stylesheet" type="text/css" media="all" href="css/session_new.css" />
@@ -34,27 +31,24 @@
     <div id="content" class="container_12" role="main">
         <div class="centralized">
             <h1 style="text-align: center">OdontoSystem</h1>
-            <h:panelGroup rendered="#{!empty param.login_error}">
-            	<span style="font-color:red">Erro ao efetuar Login.</span>
-            	<br/>
-            	Motivo : #{SPRING_SECURITY_LAST_EXCEPTION.message}
-            </h:panelGroup>
-					<form id="login" class='form-horizontal' method="post" action="#{request.contextPath}/j_spring_security_check">
-						<table>
-							<tr><th><label for="id_username">Login</label></th>
-							<td><input type="text" name="j_username" maxlength="30" autofocus="" id="id_username"/></td>
-							</tr>
-								
-							<tr>
-								<th><label id="is_password">Senha</label></th>
-								<td><input type="password" name="j_password" id="id_password" /></td>
-							</tr>
-						</table>
-						<input class='btn btn-primary' id="login" type="submit" value="Entrar"/>
-						<script>
-							document.getElementById("login").j_username.value = "#{SPRING_SECURITY_LAST_USERNAME}"
-						</script>
-					</form>
+            
+					<h:form id="login" class='form-horizontal'>
+						<h:panelGrid columns="3">
+							<h:outputLabel value="Login :" for="id_username"/>
+									<h:inputText  label="Login" maxlength="30" autofocus="" id="id_username" 
+											  value="#{loginMBean.login}" required="true" requiredMessage=" Informe o seu Login.">
+											  <f:validateLength minimum="5" maximum="50" />
+									</h:inputText>
+									<h:message for="id_username" errorStyle="color: red"/>
+							
+
+							<h:outputLabel value="Senha :" for="id_password"/>
+								<h:inputSecret id="id_password" value="#{loginMBean.senha}"
+												required="true" requiredMessage="Informe sua senha"/>
+								<h:message for="id_password" errorStyle="color: red"></h:message>
+						</h:panelGrid>
+						<h:commandButton action="#{loginMBean.efetuarLogin}" class="btn btn-primary" value="Login"/>
+					</h:form>
             </div>
                 <hr/>
                 <ul id="bottom-nav">

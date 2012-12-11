@@ -2,17 +2,19 @@ package br.com.engaplicada.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.engaplicada.dao.UsuarioDao;
 import br.com.engaplicada.entity.Usuario;
+import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
 
-@Service("usuarioService")
+
 public class UsuarioService {
-	@Autowired
+	
 	private UsuarioDao dao;
+	
+	public UsuarioService(){
+		this.dao = new UsuarioDao();
+	}
 	
 	public List<Usuario> getAllUsuarios(){
 		return dao.findAll();
@@ -22,16 +24,31 @@ public class UsuarioService {
 		return dao.findByName(nome);
 	}
 	
-	public void createUsuario(Usuario usuario) throws RepositoryException{
-		 dao.save(usuario);
+	public boolean isCadastrar(Usuario usuario) throws RepositoryException, RNException{
+		 try {
+			dao.save(usuario);
+			return true;
+		} catch (RepositoryException e) {
+				throw new RNException(" ERRO : Falha ao salvar o Usuario !");
+		}
 	}
 	
-	public void updateUsuario(Usuario usuario){
-		dao.update(usuario);
+	public boolean isAtualizar(Usuario usuario) throws RNException{
+		try{
+			dao.update(usuario);
+			return true;
+		}catch (Exception e) {
+			throw new RNException(" ERRO : Falha ao atualizar o Usuario !");
+		}
 	}
 	
-	public void deleteUsuario(Usuario usuario){
-		dao.delete(usuario);
+	public boolean isRemover(Usuario usuario) throws RNException{
+		try{
+			dao.delete(usuario);
+			return true;
+		}catch (Exception e) {
+			throw new RNException("ERRO : Falha ao remover Usuario !");
+		}
 	}
 
 	public UsuarioDao getDao() {
@@ -41,7 +58,5 @@ public class UsuarioService {
 	public void setDao(UsuarioDao dao) {
 		this.dao = dao;
 	}
-	
-	
 	
 }
