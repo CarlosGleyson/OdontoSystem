@@ -17,7 +17,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.CollectionOfElements;
 
 @Entity
-@Table(name="usuarios")
+@Table(name="usuario")
 public class Usuario implements Serializable {
 	/**
 	 * 
