@@ -62,13 +62,21 @@ public class UsuarioMBean {
 
 	public String cadastrar()throws RNException, RepositoryException{
 		FacesContext obj = FacesContext.getCurrentInstance();
+		if(this.confirmaSenha.equals(usuario.getSenha())){
 			if(service.isCadastrar(usuario)){
-				return "usuarioCadastrado";
+				FacesMessage mensagem = new FacesMessage("Usuário Cadastrado com Sucesso !");
+				obj.addMessage(null, mensagem);
+				return null;
 			}else{
 				FacesMessage mensagem = new FacesMessage("ERRO : Falha ao salvar o Usuario ");
 				obj.addMessage(null, mensagem);
 				return "erro";
 			}
+		}else{
+			FacesMessage mensagem = new FacesMessage("ERRO : Falha na confirmação da senha ! ");
+			obj.addMessage(null, mensagem);
+			return null;
+		}
 
 	}
 	
