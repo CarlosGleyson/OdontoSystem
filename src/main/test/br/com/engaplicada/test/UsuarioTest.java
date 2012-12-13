@@ -5,6 +5,8 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.engaplicada.entity.Usuario;
+
 public class UsuarioTest {
 	
 	private Usuario user;
