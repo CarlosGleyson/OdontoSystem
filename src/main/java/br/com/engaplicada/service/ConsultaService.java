@@ -26,20 +26,33 @@ public class ConsultaService {
 		return this.consulta.findByName(parameter);
 	}
 	
-	public void cadastrarConsulta(Consulta consulta) throws RNException{
+	public boolean cadastrarConsulta(Consulta consulta) throws RNException{
 		try {
 			this.consulta.save(consulta);
+			return true;
 		} catch (RepositoryException e) {
 			throw new RNException(" ERROR : Não foi possível cadastrar a consulta!");
 		}
 	}
 
-	public void removerConsulta(Consulta consulta){
-		this.consulta.delete(consulta);
+	public boolean removerConsulta(Consulta consulta) throws RNException{
+		try{
+			this.consulta.delete(consulta);
+			return true;
+		}catch (Exception e) {
+			throw new RNException(" ERROR : Não foi possível remover a consulta!");
+		}
+		
 	}
 	
-	public void atualizarCosnulta(Consulta consulta){
-		this.consulta.update(consulta);
+	public boolean atualizarCosnulta(Consulta consulta) throws RNException{
+		try{
+			this.consulta.update(consulta);
+			return true;
+		}catch (Exception e) {
+			throw new RNException(" ERROR : Não foi possível atualizar a consulta!");
+		}
+		
 	}
 
 	public List<Consulta> getAllConsultas(){
