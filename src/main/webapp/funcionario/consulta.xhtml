@@ -19,7 +19,8 @@
 
 <ui:define name="conteudo">
 <h4>Agendar Consulta.</h4>
-<h:form id="cadUsuario" class='form-horizontal'>
+<h:form id="agConsulta" class='form-horizontal'>
+						
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Data Agendamento :" for="dt_agend"/>
 							<p:calendar value="#{consultaMBean.consulta.schedulingData}" id="dt_agend" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
@@ -44,9 +45,7 @@
 								<f:selectItem itemValue="Dr.Ambrosino Cavalcanti" itemLabel="Dr.Cavalcanti"/>
 							</h:selectOneMenu>
 							
-							
-							
-							<h:commandButton action="#{usuarioMBean.cadastrar}" class="btn btn-primary" value="Cadastrar !"/>
+							<h:commandButton action="#{consultaMBean.agendarConsulta}" class="btn btn-primary" value="Agendar !"/>
 												
 						</h:panelGrid>
 						

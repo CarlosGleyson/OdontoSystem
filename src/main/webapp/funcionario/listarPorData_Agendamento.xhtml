@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 </h:head>
 <body>
@@ -11,24 +12,29 @@
 <ui:define name="menu">
 				<ul class="nav nav-list">
                   <li class="nav-header">Consultas</li>
-                  <li  class="active"><a href="consulta.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
+                  <li  class="active"><a href="listarConsultas.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
                 </ul>
 </ui:define>
 
 <ui:define name="conteudo">
-<h4>Manter Consultas.</h4>
-<h:form id="buscar" class='form-horizontal'>
-	<ul class="nav nav-list">
-                  <li class="nav-header"><h5>Listar Consultas por</h5></li>
-                  <li  class="active"><a href="listarPorMedico.jsf">Médico</a></li>
-                  <li  class="active"><a href="listarPorData_Agendamento.jsf">Data Agendamento</a></li>
-                  <li  class="active"><a href="listarPorData_Consulta.jsf">Data Consulta</a></li>
-                </ul>
-</h:form>
+<h4>Listar Consultas por Data de Agendamento.</h4>
+<h:form id="form_medico" class='form-horizontal'>
+						
+						<h:panelGrid columns="3">
+														
+							
+							<h:outputLabel value="Data Agendamento :" for="dt_agend"/>
+							<p:calendar value="#{consultaMBean.consulta.schedulingData}" id="dt_agend" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
+							<h:message for="dt_agend" errorStyle="color: red"/>
+							<h:commandButton action="#{consultaMBean.entarPorDataAgendamento}" class="btn btn-primary" value="Buscar !"/>
+												
+						</h:panelGrid>
+						
+					</h:form>		
 
-<h:form id="listar" class='form-horizontal'>
-<h:messages errorStyle="color:red"/>
-				<h:dataTable value="#{consultaMBean.listarConsultas}" var="consulta" rules="rows" cellpadding="10" width="" style="text-aligne:left">
+<h:form id="form_listagem" class="form-horizontal">
+	<h:messages errorStyle="color:red"/>
+				<h:dataTable value="#{consultaMBean.consultas}" var="consulta" rules="rows" cellpadding="10" width="" style="text-aligne:left">
 							<h:column >
 								<f:facet name="header">Medico</f:facet>
 								#{consulta.doctor}
@@ -65,8 +71,14 @@
 								</h:commandLink>
 							</h:column>
 				</h:dataTable>
-</h:form>		
+
+</h:form>
+
+
 </ui:define>
+
+
+
 </ui:composition>
 </body>
 </html>

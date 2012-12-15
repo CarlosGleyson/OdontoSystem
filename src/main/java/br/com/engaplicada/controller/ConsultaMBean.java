@@ -4,7 +4,6 @@
 
 package br.com.engaplicada.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -27,7 +26,7 @@ import br.com.engaplicada.util.RepositoryException;
 public class ConsultaMBean {
 	private Consulta consulta;
 	private ConsultaService cService;
-	
+	private List<Consulta> consultas;
 	
 	public ConsultaMBean(){
 		this.consulta = new Consulta();
@@ -43,21 +42,21 @@ public class ConsultaMBean {
 		return "inicio";
 	}
 	
-	public List<Consulta> listarConsultas()throws RepositoryException{
+	public List<Consulta> getlistarConsultas()throws RepositoryException{
 		return this.cService.getAllConsultas();
 	}
 	
 	public String removerConsulta() throws RNException,RepositoryException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(this.cService.removerConsulta(this.consulta)){
-			return "removerConsulta";
+			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage("ERROR : Falha ao remover consulta");
 			obj.addMessage(null, mensagem);
-		}return "erro";
+		}return null;
 	}
 	
-	public String cadastrarConsulta() throws RNException,RepositoryException{
+	public String agendarConsulta() throws RNException,RepositoryException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(this.cService.cadastrarConsulta(this.consulta)){
 			FacesMessage mensagem = new FacesMessage("Consulta Cadastrada com sucesso");
@@ -66,29 +65,65 @@ public class ConsultaMBean {
 		}else{
 			FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta");
 			obj.addMessage(null, mensagem);
-			return "erro";
+			return null;
 		}
 	}
 	
 	public String atualizarConsulta() throws RNException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(this.cService.atualizarCosnulta(this.consulta)){
-			return "atualizarConsulta";
+			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage(" ERROR : Falha ao atualizar a consulta");
 			obj.addMessage(null, mensagem);
-		return "erro";
+		return null;
 		}
 	}
 	
+	private void listarPorMedico(){
+		this.consultas =  cService.getConsultasPorMedico(this.consulta.getDoctor());
+	}
+	
+	private void listarPorDataAgendamento(){
+		this.consultas = cService.getConsultasPorDataAgendamento(this.consulta.getSchedulingData());
+	}
+	
+	private void listarPorDataConsulta(){
+		this.consultas = cService.getConsultasPorDataConsulta(this.consulta.getRealizationData());
+	}
+	
+	public String entrarPorMedico(){
+		listarPorMedico();
+		return null;
+	}
+	
+	public String entarPorDataAgendamento(){
+		listarPorDataAgendamento();
+		return null;
+	}
+	
+	public String entarPorDataConsulta(){
+		listarPorDataConsulta();
+		return null;
+	}
 	
 //	>>>>>>>>>>>>>>>>>>>>>>  Getters and Setters  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+	
+	
 	
 	public Consulta getConsulta() {
 		return consulta;
 	}
 	
 	
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
+
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
+	}
+
 	public void setConsulta(Consulta consulta) {
 		this.consulta = consulta;
 	}

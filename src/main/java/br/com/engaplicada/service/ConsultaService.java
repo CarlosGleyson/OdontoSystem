@@ -3,6 +3,7 @@
  */
 package br.com.engaplicada.service;
 
+import java.util.Date;
 import java.util.List;
 
 import br.com.engaplicada.dao.ConsultaDao;
@@ -61,5 +62,17 @@ public class ConsultaService {
 	
 	public void setConsultaDao(ConsultaDao cd){
 		this.consultaDao = cd;
+	}
+
+	public List<Consulta> getConsultasPorMedico(String nomeMedico) {
+		return consultaDao.findByMedico(nomeMedico);
+	}
+
+	public List<Consulta> getConsultasPorDataAgendamento(Date schedulingData) {
+		return consultaDao.findConsultaByDataAgendamento(schedulingData);
+	}
+
+	public List<Consulta> getConsultasPorDataConsulta(Date realizationData) {
+		return consultaDao.findConsultaByDataConsulta(realizationData);
 	}
 }
