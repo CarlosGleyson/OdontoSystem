@@ -5,7 +5,7 @@
 	<persistence-unit name="odontosystemPU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>br.com.engaplicada.entity.Usuario</class>
-<!-- 		<class>br.com.engaplicada.entity.</class> -->
+		<class>br.com.engaplicada.entity.Consulta</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
 			<property name="hibernate.format_sql" value="true" />

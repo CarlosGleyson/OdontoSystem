@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<body>
+<ui:composition template="/admin/templateAdmin.xhtml">
+<ui:define name="menu">
+				<ul class="nav nav-list">
+                  <li  class="active"><a href="../inicio.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
+                  <li class="nav-header">Consultas</li>
+                  <li class="nav-header"><a href="listarConsultas.jsf"><i class="icon-book"></i>Manter Consultas</a></li>                 
+                </ul>
+</ui:define>
+
+<ui:define name="conteudo">
+<h4>Agendar Consulta.</h4>
+<h:form id="cadUsuario" class='form-horizontal'>
+						<h:panelGrid columns="3">
+							<h:outputLabel value="Data Agendamento :" for="dt_agend"/>
+							<p:calendar value="#{consultaMBean.consulta.schedulingData}" id="dt_agend" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
+							<h:message for="dt_agend" errorStyle="color: red"/>
+							
+							<h:outputLabel value="Data Consulta :" for="dt_cons"/>
+							<p:calendar value="#{consultaMBean.consulta.realizationData}" id="dt_cons" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
+							<h:message for="dt_cons" errorStyle="color: red"/>
+							
+							<h:outputLabel value="Paciente :" for="paciente"/>
+							<h:inputText  label="Paciente" maxlength="30" autofocus="" id="paciente" 
+											  value="#{consultaMBean.consulta.patient}" required="true" requiredMessage=" Informe o nome do Paciente.">
+											  <f:validateLength minimum="5" maximum="50" />
+									</h:inputText>
+									<h:message for="paciente" errorStyle="color: red"/>
+							
+							<h:outputLabel value="Médico :" for="medico"/>
+							<h:selectOneMenu value="#{consultaMBean.consulta.doctor}" id="medico">
+								<f:selectItem itemValue="Dr.Francisco Anastácio Souza" itemLabel="Dr.Anastácio"/>
+								<f:selectItem itemValue="Dr.Heman Serafim Silva" itemLabel="Dr.Silva"/>
+								<f:selectItem itemValue="Dr.José Felizardo da Costa" itemLabel="Dr.Felizardo"/>
+								<f:selectItem itemValue="Dr.Ambrosino Cavalcanti" itemLabel="Dr.Cavalcanti"/>
+							</h:selectOneMenu>
+							
+							
+							
+							<h:commandButton action="#{usuarioMBean.cadastrar}" class="btn btn-primary" value="Cadastrar !"/>
+												
+						</h:panelGrid>
+						
+					</h:form>		
+</ui:define>
+
+</ui:composition>
+</body>
+</html>

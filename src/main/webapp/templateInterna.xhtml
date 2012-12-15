@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
     <link href="img/favicon.ico" rel="shortcut icon"/>
@@ -16,21 +15,22 @@
     <script src="dist/html5shiv.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" href="../css/bootstrap.css"/>
-    <link rel="stylesheet" href="../css/bootstrap-responsive.css"/>
-    <link rel="stylesheet" href="../css/app.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="css/app.css"/>
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
-    <script src="../js/jquery.easing.1.3.js"/>
-    <script src="../js/bootstrap.js"/>
-    <link href="../css/estilo.css" rel="stylesheet"/>
-    <script src="../js/calendario.js"/>
-    <script src="../js/diretor.js"/>
+    <script src="js/jquery.easing.1.3.js"/>
+    <script src="js/bootstrap.js"/>
+    <link href="css/estilo.css" rel="stylesheet"/>
+    <script src="js/calendario.js"/>
+    <script src="js/diretor.js"/>
 
     
-    <link rel="stylesheet" type="text/css" media="all" href="../css/session_new.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="css/session_new.css" />
 
 </head>
+<f:view contentType="text/html" /> 
 <body>
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -40,10 +40,11 @@
                 <div class="btn-group pull-right">
                     <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-user"></i>
-                        Usuario Logado <span class="caret"></span>
+                         #{loginMBean.login}
+                        	 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Sair do Sistema</a></li>
+                        <li><a href="login.jsf">Sair do Sistema</a></li>
                     </ul>
                 </div>
                 
@@ -54,22 +55,12 @@
 <div class="conteiner-fluid">
     <div class="span3">
             <div class="well">
-                <ul class="nav nav-list">
-                  <li class="nav-header">Usuarios</li>
-                  <li  class="active"><a href="#"><i class="icon-book"></i>Manter Usuarios</a></li>
-                  <li class="nav-header">Funcionários</li>
-                  <li><a href="#">Manter Funcionários</a></li>
-                  <li class="nav-header">Pacientes</li>
-                  <li><a href="#">Manter Pacientes</a></li>
-                  <li class="nav-header">Administrativo</li>
-                  <li><a href="#">Consultas</a></li>
-                  <li><a href="#">Configurações</a></li>
-                </ul>
+                <ui:insert name="menu"></ui:insert>
             </div>
     </div>
     
     <div class="span9">
-    	 <div id="content1" class="hero-unit">
+    	 <div class="hero-unit">
     	 	<ui:insert name="conteudo"></ui:insert>
     	 </div>
     </div>

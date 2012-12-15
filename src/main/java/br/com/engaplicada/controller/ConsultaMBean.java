@@ -4,6 +4,7 @@
 
 package br.com.engaplicada.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -21,7 +22,7 @@ import br.com.engaplicada.util.RepositoryException;
  *
  */
 
-@ManagedBean(name="ConsultaMBean")
+@ManagedBean(name="consultaMBean")
 @RequestScoped
 public class ConsultaMBean {
 	private Consulta consulta;
@@ -100,9 +101,6 @@ public class ConsultaMBean {
 
 	public void setcService(ConsultaService cService) {
 		this.cService = cService;
+	
 	}
-	
-	
-	
-
 }

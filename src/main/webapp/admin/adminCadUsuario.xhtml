@@ -5,18 +5,20 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
 </head>
 <body>
 <ui:composition template="templateAdmin.xhtml">
 <ui:define name="menu">
-                <ul class="nav nav-list">
-                  <li  class="active"><a href="../login.jsf"><i class="icon-book"></i>Retornar ao Login</a></li>
-                </ul>
-</ui:define>              
+	<ul class="nav nav-list">
+          <li  class="active"><a href="../inicio.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
+    </ul>
+</ui:define>
+
 <ui:define name="conteudo">     
 					<h:form id="cadUsuario" class='form-horizontal'>
-					<h:messages/>
+					
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Nome :" for="id_name"/>
 									<h:inputText  label="Nome" maxlength="30" autofocus="" id="id_name" 
@@ -55,7 +57,47 @@
 						</h:panelGrid>
 						
 					</h:form>
-</ui:define>					
+							<hr />
+					<h4>A Listagem a baixo exibe a relação de todos os Usuarios do sistema.</h4>
+			<h:form id="form2">
+			<h:messages errorStyle="color:red"/>
+				<h:dataTable value="#{usuarioMBean.lista}" var="usuario" rules="rows" cellpadding="10" width="" style="text-aligne:left">
+							<h:column >
+								<f:facet name="header">Nome</f:facet>
+								#{usuario.nome}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">E-mail</f:facet>
+								#{usuario.email}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Login</f:facet>
+								#{usuario.login}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Editar/Remover</f:facet>
+							</h:column>
+							<h:column>
+								<h:commandLink action="#{usuarioMBean.atualizar}">
+										<img class="icon-edit"/>
+										<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>
+										<f:setPropertyActionListener target="#{usuarioMBean.destino}" value="/admin/adminCadUsuario"/>
+								</h:commandLink>
+							</h:column>
+							
+							<h:column>
+								<h:commandLink action="#{usuarioMBean.remover}">
+									<img class="icon-remove"/>
+								<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>	
+								</h:commandLink>
+							</h:column>
+				</h:dataTable>
+			</h:form>
+			<hr />
+</ui:define>
 </ui:composition>
-</body>   
+</body>
 </html>

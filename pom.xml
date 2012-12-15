@@ -11,8 +11,23 @@
 <!-- 	<properties> -->
 <!-- 		<org.springframework.version>3.0.6.RELEASE</org.springframework.version> -->
 <!-- 	</properties> -->
-
+	<repositories>
+		<repository>  
+		    <id>prime-repo</id>  
+		    <name>PrimeFaces Maven Repository</name>  
+		    <url>http://repository.primefaces.org</url>  
+		    <layout>default</layout>  
+		</repository> 
+	</repositories> 
+	
 	<dependencies>
+	
+		<dependency>  
+		    <groupId>org.primefaces</groupId>  
+		    <artifactId>primefaces</artifactId>  
+		    <version>3.4.2</version>  
+		</dependency>
+		 
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>

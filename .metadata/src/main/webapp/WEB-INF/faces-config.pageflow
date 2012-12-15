@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13548337187440" configfile="/Odontosystem/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf13551959642617" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf13551959642618 pf13551959642619 pf135519596426110" path="login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/inicio.xhtml" id="pf135519596426111" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13551959642618" path="/admin/inicio.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="loginFail.xhtml" id="pf135519596426112" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13551959642619" path="loginFail.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="admin/cadastroUsuario.xhtml" id="pf135519596426113" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf135519596426110" path="/admin/cadastroUsuario.xhtml"/>
-  <links id="pf13551959642618" target="pf135519596426111" source="pf13551959642617" outcome="inicio"/>
-  <links id="pf13551959642619" target="pf135519596426112" source="pf13551959642617" outcome="loginFail"/>
-  <links id="pf135519596426110" target="pf135519596426113" source="pf13551959642617" outcome="cadastroUsuario"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf13554880107160" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13554880107161 pf13554880107172" path="login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginFail.xhtml" id="pf13554880107173" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13554880107161" path="loginFail.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="admin/cadastroUsuario.xhtml" id="pf13554880107174" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13554880107172" path="/admin/cadastroUsuario.xhtml"/>
+  <links id="pf13554880107161" target="pf13554880107173" source="pf13554880107160" outcome="loginFail"/>
+  <links id="pf13554880107172" target="pf13554880107174" source="pf13554880107160" outcome="cadastroUsuario"/>
 </pageflow:Pageflow>

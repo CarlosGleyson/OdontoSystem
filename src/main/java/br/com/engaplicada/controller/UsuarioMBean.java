@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.entity.Usuario;
 import br.com.engaplicada.service.UsuarioService;
+import br.com.engaplicada.util.ConstantesDeNavegacao;
 import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
 
@@ -30,10 +31,6 @@ public class UsuarioMBean {
 		this.usuario.setAtivo(true);
 		this.service = new UsuarioService();
 		destino = "";
-	}
-	
-	public String novo(){
-		return "cadastroUsario";
 	}
 
 	public Usuario getUsuario() {
@@ -83,7 +80,7 @@ public class UsuarioMBean {
 	public String atualizarUsuario()throws RNException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(service.isAtualizar(usuario)){
-			return "atualizarUsuario";
+			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage(" ERRO : Falha ao atualizar o Usuario !");
 			obj.addMessage(null, mensagem);
@@ -98,7 +95,9 @@ public class UsuarioMBean {
 	public String remover()throws RNException, RepositoryException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(service.isRemover(usuario)){
-			return "removerUsuario";
+			FacesMessage mensagem = new FacesMessage("Usuario Removido !!");
+			obj.addMessage(null, mensagem);
+			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage("ERRO : Falha ao Remover Usuario");
 			obj.addMessage(null, mensagem);
@@ -112,6 +111,10 @@ public class UsuarioMBean {
 	
 	public String forward(){
 		return "inicio";
+	}
+	
+	public String entrarCadastroUsuario(){
+		return "cadastro";
 	}
 	
 }

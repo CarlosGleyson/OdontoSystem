@@ -3,16 +3,22 @@ package br.com.engaplicada.controller;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.service.LoginService;
+import br.com.engaplicada.util.ConstantesDeNavegacao;
 import br.com.engaplicada.util.EventoLogin;
 import br.com.engaplicada.util.RepositoryException;
 
 
 @ManagedBean(name="loginMBean")
-@RequestScoped
-public class LoginMBean {
+@SessionScoped
+public class LoginMBean extends AbstractController{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private LoginService loginService; 
 	private String login;
 	private String senha;
@@ -48,7 +54,7 @@ public class LoginMBean {
 		
 		try {
 			if(loginService.isAutenticar(evento)){
-				return "inicio";
+				return ConstantesDeNavegacao.INICIO;
 			}
 		} catch (RepositoryException e) {
 			e.printStackTrace();

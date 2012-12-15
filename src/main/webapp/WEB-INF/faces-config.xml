@@ -10,13 +10,13 @@
     <!-- @Paulo Neto -->
     
     <!--  Login -->
-    <navigation-rule>
-    	<from-view-id>login.xhtml</from-view-id>
-    	<navigation-case>
-    		<from-outcome>inicio</from-outcome>
-    		<to-view-id>/admin/inicio.xhtml</to-view-id>
-    	</navigation-case>
-    </navigation-rule>
+<!--     <navigation-rule> -->
+<!--     	<from-view-id>/login.xhtml</from-view-id> -->
+<!--     	<navigation-case> -->
+<!--     		<from-outcome>inicio</from-outcome> -->
+<!--     		<to-view-id>/admin/inicio.jsf</to-view-id> -->
+<!--     	</navigation-case> -->
+<!--     </navigation-rule> -->
     
     <navigation-rule>
     	<from-view-id>login.xhtml</from-view-id>
@@ -35,5 +35,15 @@
     </navigation-rule>
     
     <!--  /Login -->
+    
+    <!--  /Inicio -->
+    
+        <navigation-rule>
+    	<from-view-id>inicio.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>cadastro</from-outcome>
+    		<to-view-id>/admin/adminCadUsuario.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
 
 </faces-config>

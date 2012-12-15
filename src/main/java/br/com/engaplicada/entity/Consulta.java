@@ -4,6 +4,7 @@
 package br.com.engaplicada.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,26 +21,35 @@ import javax.persistence.OneToOne;
 @Entity
 public class Consulta implements Serializable{
 	
-//	Identicador único da entidade Usuario (PK)
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//	Identicador único da entidade Usuario (PK)
 	@Id
 	@GeneratedValue
 	private Integer idConsulta;
 	
-//	Usuario(funcionário) responsável pelo agendamento da consulta
+	//	Usuario(funcionário) responsável pelo agendamento da consulta
 	@JoinColumn(name="usuario_id")
 	@OneToOne(targetEntity=Usuario.class)
 	private Usuario user;
 	
 	@Column(name="paciente")
 	private String patient;
+	
 	@Column(name="medico")
 	private String doctor;
-//	data de agendamento
+
+	//	data de agendamento	
 	@Column(name="d_agendamento")
-	private String schedulingDate;
-//	data de realização
+	private Date schedulingDate;
+
+	//	data de realização
 	@Column(name="d_realizacao")
-	private String realizationDate;
+	private Date realizationDate;
 	
 	
 //	>>>>>>>>>>>>>>>>>>>>>>>  Getters and Setters  <<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -55,16 +65,16 @@ public class Consulta implements Serializable{
 	public void setPatient(String patient) {
 		this.patient = patient;
 	}
-	public String getSchedulingData() {
+	public Date getSchedulingData() {
 		return schedulingDate;
 	}
-	public void setSchedulingData(String schedulingData) {
+	public void setSchedulingData(Date schedulingData) {
 		this.schedulingDate = schedulingData;
 	}
-	public String getRealizationData() {
+	public Date getRealizationData() {
 		return realizationDate;
 	}
-	public void setRealizationData(String realizationData) {
+	public void setRealizationData(Date realizationData) {
 		this.realizationDate = realizationData;
 	}
 	public Integer getIdConsulta() {
