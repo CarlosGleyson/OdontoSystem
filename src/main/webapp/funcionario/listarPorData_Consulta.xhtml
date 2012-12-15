@@ -23,7 +23,7 @@
 						<h:panelGrid columns="3">
 														
 							<h:outputLabel value="Data Consulta :" for="dt_cons"/>
-							<p:calendar value="#{consultaMBean.consulta.schedulingData}" id="dt_cons" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
+							<p:calendar value="#{consultaMBean.consulta.realizationData}" id="dt_cons" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
 							<h:message for="dt_cons" errorStyle="color: red"/>
 							
 							<h:commandButton action="#{consultaMBean.entarPorDataConsulta}" class="btn btn-primary" value="Buscar !"/>
