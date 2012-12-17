@@ -46,38 +46,35 @@
 							</h:column>
 							
 							<h:column>
-								<f:facet name="header">Data Consulta</f:facet>
-								#{usuario.realizationDate}
+								<f:facet name="header">Data Agendamento</f:facet>
+								#{consulta.dataAgendamento}
 							</h:column>
 							
 							<h:column>
 								<f:facet name="header">Data Consulta</f:facet>
-								#{usuario.schedulingDate}
+								#{consulta.dataRealizacao}
 							</h:column>
 							
 							<h:column>
 								<f:facet name="header">Editar/Remover</f:facet>
 							</h:column>
 							<h:column>
-								<h:commandLink action="#{usuarioMBean.atualizar}">
+								<h:commandLink action="#{consultaMBean.atualizar}">
 										<img class="icon-edit"/>
-										<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>
-										<f:setPropertyActionListener target="#{usuarioMBean.destino}" value="/admin/adminCadUsuario"/>
+										<f:setPropertyActionListener target="#{consultaMBean.consulta}" value="#{consulta}"/>
+										<f:setPropertyActionListener target="#{consultaMBean.destino}" value="/funcionario/listarPorMedico"/>
 								</h:commandLink>
 
-								<h:commandLink action="#{usuarioMBean.remover}">
+								<h:commandLink action="#{consultaMBean.removerConsulta}" onclick="if (!confirm('Confirma a exclusão desta Consulta?')) return false;">
 									<img class="icon-remove"/>
-								<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>	
+								<f:setPropertyActionListener target="#{consultaMBean.consulta}" value="#{consulta}"/>	
 								</h:commandLink>
-							</h:column>
+							</h:column>				
 				</h:dataTable>
 </h:form>
 
 
 </ui:define>
-
-
-
 </ui:composition>
 </body>
 </html>

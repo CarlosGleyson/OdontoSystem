@@ -4,6 +4,7 @@
 package br.com.engaplicada.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -68,12 +69,28 @@ public class Consulta implements Serializable{
 	public Date getSchedulingData() {
 		return schedulingDate;
 	}
+	
 	public void setSchedulingData(Date schedulingData) {
 		this.schedulingDate = schedulingData;
 	}
 	public Date getRealizationData() {
 		return realizationDate;
 	}
+	
+	/** Formata a Data de realização da Consulta que esta no BD para exibição dd/MM/yyy**/
+	public String getDataRealizacao(){
+		Date data = getRealizationData();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(data);
+	}
+	
+	/** Formata a Data de agendamento da Consulta que esta no BD para exibição dd/MM/yyy**/
+	public String getDataAgendamento(){
+		Date data = getSchedulingData();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(data);
+	}
+	
 	public void setRealizationData(Date realizationData) {
 		this.realizationDate = realizationData;
 	}

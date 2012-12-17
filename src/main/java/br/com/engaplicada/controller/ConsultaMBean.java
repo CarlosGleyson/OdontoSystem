@@ -23,7 +23,11 @@ import br.com.engaplicada.util.RepositoryException;
 
 @ManagedBean(name="consultaMBean")
 @RequestScoped
-public class ConsultaMBean {
+public class ConsultaMBean extends AbstractController{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Consulta consulta;
 	private ConsultaService cService;
 	private List<Consulta> consultas;
