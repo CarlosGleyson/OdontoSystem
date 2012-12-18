@@ -6,6 +6,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.context.FacesContext;
 
+import com.sun.faces.el.ELContextImpl;
+
 
 /**
  * @author Paulo Antonio
@@ -37,5 +39,10 @@ public class AbstractController implements Serializable {
 		message.setSeverity(severity);
 		FacesContext.getCurrentInstance().addMessage(componentId, message);
 	}
+	
+    private Object getBean(String ref) {    
+    	FacesContext facesContext = FacesContext.getCurrentInstance();
+    	return null;
+    }  
 
 }

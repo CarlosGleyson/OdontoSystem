@@ -7,6 +7,7 @@
 <h:head>
 </h:head>
 <body>
+<f:view>
 <ui:composition template="/admin/templateAdmin.xhtml">
 <ui:define name="menu">
 				<ul class="nav nav-list">
@@ -50,11 +51,11 @@
 							</h:column>
 							
 							<h:column>
-								<f:facet name="header">Editar/Remover</f:facet>
-							</h:column>
-							<h:column>
+								<f:facet name="header">Remover</f:facet>
+<!-- 							</h:column> -->
+<!-- 							<h:column> -->
 								<h:commandLink action="#{consultaMBean.atualizar}">
-										<img class="icon-edit"/>
+<!-- 										<img class="icon-edit"/> -->
 										<f:setPropertyActionListener target="#{consultaMBean.consulta}" value="#{consulta}"/>
 										<f:setPropertyActionListener target="#{consultaMBean.destino}" value="/funcionario/listarPorMedico"/>
 								</h:commandLink>
@@ -68,5 +69,6 @@
 </h:form>		
 </ui:define>
 </ui:composition>
+</f:view>
 </body>
 </html>
