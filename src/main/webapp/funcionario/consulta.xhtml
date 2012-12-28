@@ -13,14 +13,14 @@
 				<ul class="nav nav-list">
                   <li  class="active"><a href="../inicio.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
                   <li class="nav-header">Consultas</li>
-                  <li class="nav-header"><a href="listarConsultas.jsf"><i class="icon-book"></i>Manter Consultas</a></li>                 
+                  <li class="nav-header"><a href="listarConsultas.jsf"><i class="icon-book"></i>Gerênciar Consultas</a></li>                 
                 </ul>
 </ui:define>
 
 <ui:define name="conteudo">
 <h4>Agendar Consulta.</h4>
 <h:form id="agConsulta" class='form-horizontal'>
-						
+						<h:messages errorStyle="color:red"/>
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Data Agendamento :" for="dt_agend"/>
 							<p:calendar value="#{consultaMBean.consulta.schedulingData}" id="dt_agend" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>

@@ -4,6 +4,7 @@
 
 package br.com.engaplicada.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -61,16 +62,29 @@ public class ConsultaMBean extends AbstractController{
 	}
 	
 	public String agendarConsulta() throws RNException,RepositoryException{
-		FacesContext obj = FacesContext.getCurrentInstance();
-		if(this.cService.cadastrarConsulta(this.consulta)){
-			FacesMessage mensagem = new FacesMessage("Consulta Cadastrada com sucesso");
-			obj.addMessage(null, mensagem);
-			return null;
+		
+		if(validaDataConsulta()){
+			if(this.cService.cadastrarConsulta(this.consulta)){
+				addErrorMessage("Consulta Cadastrada com sucesso");
+				return null;
+			}else{
+				addErrorMessage("ERROR : Falha ao salvar a consulta");
+				return null;
+			}
 		}else{
-			FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta");
-			obj.addMessage(null, mensagem);
+			addErrorMessage("ERROR : Verifique as Datas !");
 			return null;
 		}
+	}
+	
+	private boolean validaDataConsulta(){
+		Date agendamento = this.consulta.getSchedulingData();
+		Date realizacao = this.consulta.getRealizationData();
+		
+		if((agendamento.after(realizacao) || realizacao.before(agendamento))||(agendamento.equals(realizacao))){
+			return false;
+		}
+		return true;
 	}
 	
 	public String atualizarConsulta() throws RNException{
@@ -110,6 +124,8 @@ public class ConsultaMBean extends AbstractController{
 		listarPorDataConsulta();
 		return null;
 	}
+	
+	
 	
 //	>>>>>>>>>>>>>>>>>>>>>>  Getters and Setters  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	

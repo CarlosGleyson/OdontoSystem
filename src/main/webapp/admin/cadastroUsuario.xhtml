@@ -11,12 +11,11 @@
 <ui:composition template="templateAdmin.xhtml">
 <ui:define name="menu">
                 <ul class="nav nav-list">
-                  <li  class="active"><a href="../login.jsf"><i class="icon-book"></i>Retornar ao Login</a></li>
+                  <li><a href="../login.jsf"><i class="icon-book"></i>Retornar ao Login</a></li>
                 </ul>
 </ui:define>              
 <ui:define name="conteudo">     
 					<h:form id="cadUsuario" class='form-horizontal'>
-					<h:messages/>
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Nome :" for="id_name"/>
 									<h:inputText  label="Nome" maxlength="30" autofocus="" id="id_name" 

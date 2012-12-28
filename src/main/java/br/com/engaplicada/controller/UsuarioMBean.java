@@ -19,7 +19,11 @@ import br.com.engaplicada.util.RepositoryException;
 
 @ManagedBean(name="usuarioMBean")
 @RequestScoped
-public class UsuarioMBean {
+public class UsuarioMBean extends AbstractController{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private String confirmaSenha;
 	private UsuarioService service;
@@ -27,12 +31,16 @@ public class UsuarioMBean {
 	
 	
 	public UsuarioMBean(){
+		reset();
+		destino = "";
+	}
+	
+	public void reset(){
 		this.usuario = new Usuario();
 		this.usuario.setAtivo(true);
 		this.service = new UsuarioService();
-		destino = "";
 	}
-
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -80,6 +88,7 @@ public class UsuarioMBean {
 	public String atualizarUsuario()throws RNException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(service.isAtualizar(usuario)){
+			addInfoMessage("Usuário atualizado com sucesso !");
 			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage(" ERRO : Falha ao atualizar o Usuario !");
