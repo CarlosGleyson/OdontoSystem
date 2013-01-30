@@ -103,8 +103,4 @@ public class Consulta implements Serializable{
 	public void setDoctor(String doctor) {
 		this.doctor = doctor;
 	}
-	
-	
-	
-
 }
