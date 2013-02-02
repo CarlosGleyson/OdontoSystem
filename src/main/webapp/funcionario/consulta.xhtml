@@ -44,7 +44,7 @@
 								<f:selectItem itemValue="Dr.José Felizardo da Costa" itemLabel="Dr.Felizardo"/>
 								<f:selectItem itemValue="Dr.Ambrosino Cavalcanti" itemLabel="Dr.Cavalcanti"/>
 							</h:selectOneMenu>
-							
+							<h:inputHidden value="#{consultaMBean.consulta.realizada}"/>
 							<h:commandButton action="#{consultaMBean.agendarConsulta}" class="btn btn-primary" value="Agendar !"/>
 												
 						</h:panelGrid>

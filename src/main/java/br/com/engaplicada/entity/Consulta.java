@@ -52,6 +52,8 @@ public class Consulta implements Serializable{
 	@Column(name="d_realizacao")
 	private Date realizationDate;
 	
+	@Column(name="status_realizada")
+	private boolean realizada;
 	
 //	>>>>>>>>>>>>>>>>>>>>>>>  Getters and Setters  <<<<<<<<<<<<<<<<<<<<<<<<<<<
 	public Usuario getUser() {
@@ -76,6 +78,8 @@ public class Consulta implements Serializable{
 	public Date getRealizationData() {
 		return realizationDate;
 	}
+	
+	
 	
 	/** Formata a Data de realização da Consulta que esta no BD para exibição dd/MM/yyy**/
 	public String getDataRealizacao(){
@@ -102,5 +106,13 @@ public class Consulta implements Serializable{
 	}
 	public void setDoctor(String doctor) {
 		this.doctor = doctor;
+	}
+	
+	public boolean isRealizada(){
+		return this.realizada;
+	}
+	
+	public void setRealizada(boolean status){
+		this.realizada = status;
 	}
 }
