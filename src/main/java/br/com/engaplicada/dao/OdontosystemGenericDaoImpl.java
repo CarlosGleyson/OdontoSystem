@@ -17,8 +17,7 @@ public abstract class OdontosystemGenericDaoImpl<T> implements OdontosystemGener
 
 	public OdontosystemGenericDaoImpl(Class<T> entityClass) {
 		this.entityClass = entityClass;
-		this.entityManager = HibernateUtil.getInstance().getFactory()
-				.createEntityManager();
+		this.entityManager = HibernateUtil.getInstance().getFactory().createEntityManager();
 	}
 
 	public void save(T entity) throws RepositoryException {
