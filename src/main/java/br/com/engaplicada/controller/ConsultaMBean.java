@@ -33,10 +33,13 @@ public class ConsultaMBean extends AbstractController{
 	private List<Consulta> consultas;
 	
 	public ConsultaMBean(){
-		this.consulta = new Consulta();
+		reset();
 		this.cService = new ConsultaService();
 	}
 	
+	public void reset(){
+		consulta = new Consulta();
+	}
 //	Método retorna o nome da página de consulta - consulta.xhtml
 	public String novaConsulta(){
 		return "consulta";
