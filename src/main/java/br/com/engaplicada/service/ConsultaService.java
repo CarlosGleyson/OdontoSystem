@@ -55,7 +55,10 @@ public class ConsultaService {
 		}
 		
 	}
-
+	
+	public Consulta getConsultaPorId(int id){
+		return consultaDao.findConsultaById(id);
+	}
 	public List<Consulta> getAllConsultas(){
 		return this.consultaDao.findAll();
 	}

@@ -26,7 +26,7 @@
                   <li  class="active"><a href="listarPorData_Consulta.jsf">Data Consulta</a></li>
                 </ul>
 </h:form>
-
+<li class="nav-header"><h4>Listagem de todas as consultas | Status : Realizada  <img class="icon-remove-sign"/> Há realizar  <img class="icon-ok"/></h4></li>
 <h:form id="listar" class='form-horizontal'>
 <h:messages errorStyle="color:red"/>
 				<h:dataTable value="#{consultaMBean.listarConsultas}" var="consulta" rules="rows" cellpadding="10"  style="text-aligne:center" styleClass="table table-striped">
@@ -52,23 +52,35 @@
 							
 							<h:column>
 								<f:facet name="header">Realizada?</f:facet>
-								<h:selectBooleanCheckbox value="#{consultaMBean.consulta.realizada}" style=""/>
+								<h:selectBooleanCheckbox value="#{consulta.realizada}" />
+<!-- 								<h:selectBooleanCheckbox onclick="if($('servidorLocalizacao:localizacoes:#{count}:checkNaoPertence').checked){$('servidorLocalizacao:localizacoes:#{count}:locCombo').value = 0;}" id="checkNaoPertence" value="#{l.naoPertenceUnidade}"/> -->
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Status</f:facet>
+								<h:graphicImage rendered="#{consulta.realizada}">
+									<img class="icon-ok"/>		
+								</h:graphicImage>
+								<h:graphicImage rendered="#{not consulta.realizada}">
+									<img class="icon-remove-sign"/>
+								</h:graphicImage>
 							</h:column>
 							
 							<h:column>
 								<f:facet name="header">Remover</f:facet>
-								<h:commandLink action="#{consultaMBean.atualizar}">
-<!-- 										<img class="icon-edit"/> -->
-										<f:setPropertyActionListener target="#{consultaMBean.consulta}" value="#{consulta}"/>
-										<f:setPropertyActionListener target="#{consultaMBean.destino}" value="/funcionario/listarPorMedico"/>
-								</h:commandLink>
-
-								<h:commandLink action="#{consultaMBean.removerConsulta}" onclick="if (!confirm('Confirma a exclusão desta Consulta?')) return false;">
+									<h:commandLink action="#{consultaMBean.removerConsulta}" onclick="if (!confirm('Confirma a exclusão desta Consulta?')) return false;">
 									<img class="icon-remove"/>
 								<f:setPropertyActionListener target="#{consultaMBean.consulta}" value="#{consulta}"/>	
 								</h:commandLink>
 							</h:column>				
 				</h:dataTable>
+				<tfoot>
+					<tr>
+						<td colspan="2">
+							<h:commandButton action="#{consultaMBean.atualizarStatusConsultas}" value="Gravar" class="btn btn-primary"/>
+						</td>
+					</tr>
+				</tfoot>
 </h:form>		
 </ui:define>
 </ui:composition>

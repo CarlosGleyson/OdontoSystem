@@ -78,5 +78,11 @@ public class ConsultaDao extends OdontosystemGenericDaoImpl<Consulta>{
 		return consultas;
 	}
 	
+	public Consulta findConsultaById(int id){
+		Query q = entityManager.createQuery("Select c from Consulta c where c.idConsulta = ?");
+		q.setParameter(1, id);
+		Consulta consulta = (Consulta) q.getSingleResult();
+		return consulta;
+	}
 	
 }

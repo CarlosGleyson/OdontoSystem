@@ -31,7 +31,7 @@ public class Consulta implements Serializable{
 	//	Identicador único da entidade Usuario (PK)
 	@Id
 	@GeneratedValue
-	private Integer idConsulta;
+	private int idConsulta;
 	
 	//	Usuario(funcionário) responsável pelo agendamento da consulta
 	@JoinColumn(name="usuario_id")
@@ -98,7 +98,7 @@ public class Consulta implements Serializable{
 	public void setRealizationData(Date realizationData) {
 		this.realizationDate = realizationData;
 	}
-	public Integer getIdConsulta() {
+	public int getIdConsulta() {
 		return idConsulta;
 	}
 	public String getDoctor() {

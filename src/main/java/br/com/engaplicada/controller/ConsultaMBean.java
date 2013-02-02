@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.entity.Consulta;
@@ -22,7 +23,7 @@ import br.com.engaplicada.util.RepositoryException;
  */
 
 @ManagedBean(name="consultaMBean")
-@RequestScoped
+@SessionScoped
 public class ConsultaMBean extends AbstractController{
 	/**
 	 * 
@@ -50,7 +51,7 @@ public class ConsultaMBean extends AbstractController{
 	}
 	
 	public List<Consulta> getlistarConsultas()throws RepositoryException{
-		return this.cService.getAllConsultas();
+		return this.consultas = cService.getAllConsultas();
 	}
 	
 	public String removerConsulta() throws RNException,RepositoryException{
@@ -111,6 +112,29 @@ public class ConsultaMBean extends AbstractController{
 	
 	public String entarPorDataConsulta(){
 		listarPorDataConsulta();
+		return null;
+	}
+	
+	public String atualizarStatusConsultas() throws RNException{
+		FacesContext obj = FacesContext.getCurrentInstance();
+		Consulta consultaBD;
+		boolean atualizou = false;
+		for(Consulta c : consultas){
+			consultaBD = cService.getConsultaPorId(c.getIdConsulta());
+			if(c.isRealizada() != consultaBD.isRealizada()){
+				cService.atualizarCosnulta(c);
+				atualizou = true;
+			}
+		}
+		
+		if(atualizou){
+			FacesMessage mensagem = new FacesMessage("Consultas Atualizadas com sucesso!");
+			obj.addMessage(null, mensagem);
+		}else{
+			FacesMessage mensagem = new FacesMessage("Não ocorreram atualizações nas Consultas !");
+			obj.addMessage(null, mensagem);
+		}
+		
 		return null;
 	}
 	
