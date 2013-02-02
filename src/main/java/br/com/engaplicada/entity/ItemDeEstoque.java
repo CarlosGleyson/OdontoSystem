@@ -98,11 +98,4 @@ public class ItemDeEstoque implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	
-	
-	
-	
-
 }
