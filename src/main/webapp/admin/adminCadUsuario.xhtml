@@ -61,9 +61,9 @@
 						
 					</h:form>
 							<hr />
-					<h4>A Listagem a baixo exibe a relação de todos os Usuarios do sistema.</h4>
+					
 			<h:form id="form2">
-			<h:messages errorStyle="color:red"/>
+			<li class="nav-header"><h4>A Listagem a baixo exibe a relação de todos os Usuarios do sistema.</h4></li>
 				<h:dataTable value="#{usuarioMBean.lista}" var="usuario" rules="rows" cellpadding="10" width="" style="text-aligne:left">
 							<h:column >
 								<f:facet name="header">Nome</f:facet>
@@ -87,7 +87,7 @@
 										<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>
 										<f:setPropertyActionListener target="#{usuarioMBean.destino}" value="/admin/adminCadUsuario"/>
 								</h:commandLink>
-								<h:commandLink action="#{usuarioMBean.removerConsulta}" onclick="if (!confirm('Confirma a exclusão do usuario #{usuario.nome}?')) return false;">
+								<h:commandLink action="#{usuarioMBean.remover}" onclick="if (!confirm('Confirma a exclusão do usuario #{usuario.nome}?')) return false;">
 									<img class="icon-remove"/>
 								<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>	
 								</h:commandLink>

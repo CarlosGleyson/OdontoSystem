@@ -25,12 +25,8 @@ public class UsuarioService {
 	}
 	
 	public boolean isCadastrar(Usuario usuario) throws RepositoryException, RNException{
-		 try {
-			dao.save(usuario);
-			return true;
-		} catch (RepositoryException e) {
-				throw new RNException(" ERRO : Falha ao salvar o Usuario !");
-		}
+		 dao.update(usuario);
+		return true;
 	}
 	
 	public boolean isAtualizar(Usuario usuario) throws RNException{

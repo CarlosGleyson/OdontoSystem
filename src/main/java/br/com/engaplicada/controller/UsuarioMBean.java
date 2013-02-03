@@ -3,7 +3,7 @@ package br.com.engaplicada.controller;
 /**
  * @author Paulo Neto
  * **/
-import java.util.HashMap;
+
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.entity.Usuario;
 import br.com.engaplicada.service.UsuarioService;
-import br.com.engaplicada.util.ConstantesDeNavegacao;
+
 import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
 
@@ -26,17 +26,21 @@ public class UsuarioMBean {
 	private String destino;
 	
 	
-	public UsuarioMBean(){
-		this.usuario = new Usuario();
-		this.usuario.setAtivo(true);
+	public UsuarioMBean(){	
+		reset();
 		this.service = new UsuarioService();
 		destino = "";
 	}
-
+	
+	public void reset(){
+		this.usuario = new Usuario();
+		this.usuario.setAtivo(true);
+	}
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}
-
+	
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -63,15 +67,18 @@ public class UsuarioMBean {
 			if(service.isCadastrar(usuario)){
 				FacesMessage mensagem = new FacesMessage("Usuário Cadastrado com Sucesso !");
 				obj.addMessage(null, mensagem);
+				reset();
 				return null;
 			}else{
 				FacesMessage mensagem = new FacesMessage("ERRO : Falha ao salvar o Usuario ");
 				obj.addMessage(null, mensagem);
+				reset();
 				return "erro";
 			}
 		}else{
 			FacesMessage mensagem = new FacesMessage("ERRO : Falha na confirmação da senha ! ");
 			obj.addMessage(null, mensagem);
+			reset();
 			return null;
 		}
 
@@ -80,11 +87,15 @@ public class UsuarioMBean {
 	public String atualizarUsuario()throws RNException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(service.isAtualizar(usuario)){
+			FacesMessage mensagem = new FacesMessage("Usuário Atualizado com Sucesso !");
+			obj.addMessage(null, mensagem);
+			reset();
 			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage(" ERRO : Falha ao atualizar o Usuario !");
 			obj.addMessage(null, mensagem);
-		return "erro";
+			reset();
+		return null;
 		}
 	}
 	
@@ -97,11 +108,14 @@ public class UsuarioMBean {
 		if(service.isRemover(usuario)){
 			FacesMessage mensagem = new FacesMessage("Usuario Removido !!");
 			obj.addMessage(null, mensagem);
+			reset();
 			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage("ERRO : Falha ao Remover Usuario");
 			obj.addMessage(null, mensagem);
-		}return "erro";
+		}
+		reset();
+		return null;
 	}
 	
 	public String atualizar(){

@@ -18,6 +18,7 @@ public class ItemDeEstoqueDAO extends OdontosystemGenericDaoImpl<ItemDeEstoque>{
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<ItemDeEstoque> findAll() {		
 		String hql = "SELECT item from ItemDeEstoque item order by item.codigo";
 		Query query = entityManager.createQuery(hql);
