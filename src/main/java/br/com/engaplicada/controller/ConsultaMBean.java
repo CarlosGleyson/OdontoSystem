@@ -23,7 +23,7 @@ import br.com.engaplicada.util.RepositoryException;
  */
 
 @ManagedBean(name="consultaMBean")
-@SessionScoped
+@RequestScoped
 public class ConsultaMBean extends AbstractController{
 	/**
 	 * 
@@ -121,7 +121,7 @@ public class ConsultaMBean extends AbstractController{
 		boolean atualizou = false;
 		for(Consulta c : consultas){
 			consultaBD = cService.getConsultaPorId(c.getIdConsulta());
-			if(c.isRealizada() != consultaBD.isRealizada()){
+			if(c.isRealizada() == consultaBD.isRealizada()){
 				cService.atualizarCosnulta(c);
 				atualizou = true;
 			}

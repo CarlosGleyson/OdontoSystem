@@ -26,8 +26,9 @@
                   <li  class="active"><a href="listarPorData_Consulta.jsf">Data Consulta</a></li>
                 </ul>
 </h:form>
-<li class="nav-header"><h4>Listagem de todas as consultas | Status : Realizada  <img class="icon-remove-sign"/> Há realizar  <img class="icon-ok"/></h4></li>
+
 <h:form id="listar" class='form-horizontal'>
+<li class="nav-header"><h4>Listagem de todas as consultas | Status : Há realizar  <img class="icon-remove-sign"/> Realizada  <img class="icon-ok"/></h4></li>
 <h:messages errorStyle="color:red"/>
 				<h:dataTable value="#{consultaMBean.listarConsultas}" var="consulta" rules="rows" cellpadding="10"  style="text-aligne:center" styleClass="table table-striped">
 							<h:column >
@@ -52,8 +53,7 @@
 							
 							<h:column>
 								<f:facet name="header">Realizada?</f:facet>
-								<h:selectBooleanCheckbox value="#{consulta.realizada}" />
-<!-- 								<h:selectBooleanCheckbox onclick="if($('servidorLocalizacao:localizacoes:#{count}:checkNaoPertence').checked){$('servidorLocalizacao:localizacoes:#{count}:locCombo').value = 0;}" id="checkNaoPertence" value="#{l.naoPertenceUnidade}"/> -->
+								<h:selectBooleanCheckbox value="#{consulta.realizada}"  immediate="true" rendered="#{!consulta.realizada}"/>
 							</h:column>
 							
 							<h:column>
