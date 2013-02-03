@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<body>
+<ui:composition template="/admin/templateAdmin.xhtml">
+<ui:define name="menu">
+				<ul class="nav nav-list">
+                  <li  class="active"><a href="../inicio.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
+                </ul>
+</ui:define>
+
+<ui:define name="conteudo">
+<h4>Cadastrar Itens.</h4>
+<h:form id="agConsulta" class='form-horizontal'>
+<h:messages errorStyle="color:red"/>						
+						<h:panelGrid columns="3">
+							<h:outputLabel value="Descrição :" for="desc"/>
+							<h:inputText value="#{itemEstoqueMBean.item.descricao}" id="desc" required="true" requiredMessage="Informe uma Descrição"/>
+							<h:message for="desc" errorStyle="color: red"/>
+							
+							<h:outputLabel value="Código :" for="cod"/>
+							<h:inputText value="#{itemEstoqueMBean.item.codigo}" id="cod" required="true" requiredMessage="Informe um Código"/>
+							<h:message for="cod" errorStyle="color: red"/>
+							
+							
+							<h:outputLabel value="Quantidade :" for="qtd"/>
+							<h:inputText value="#{itemEstoqueMBean.item.qtde}" id="qtd" required="true" requiredMessage="Informe uma Quantidade"/>
+							<h:message for="qtd" errorStyle="color: red"/>
+							
+							<h:commandButton action="#{itemEstoqueMBean.salvarItem}" class="btn btn-primary" value="Salvar!"/>
+												
+						</h:panelGrid>
+					</h:form>		
+
+<h:form id="listar" class='form-horizontal'>
+<li class="nav-header"><h4>Listagem dos Itens cadastrados</h4></li>
+<h:messages errorStyle="color:red"/>
+				<h:dataTable value="#{itemEstoqueMBean.itens}" var="item" rules="rows" cellpadding="10"  style="text-aligne:left">
+							<h:column>
+								#
+							</h:column>
+							
+							<h:column >
+								<f:facet name="header">Código</f:facet>
+								#{item.codigo}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Descrição</f:facet>
+								#{item.descricao}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Quantidade</f:facet>
+								#{item.qtde}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Editar | Remover</f:facet>
+								<h:commandLink action="#{itemEstoqueMBean.atualizarItem}">
+										<img class="icon-edit"/>
+										<f:setPropertyActionListener target="#{itemEstoqueMBean.item}" value="#{item}"/>
+										<f:setPropertyActionListener target="#{usuarioMBean.destino}" value="/funcionario/item_estoque"/>
+								</h:commandLink>
+									<h:commandLink action="#{itemEstoqueMBean.removerItem}" onclick="if (!confirm('Confirma a exclusão deste Item?')) return false;">
+									<img class="icon-remove"/>
+								<f:setPropertyActionListener target="#{itemEstoqueMBean.item}" value="#{item}"/>	
+								</h:commandLink>
+							</h:column>				
+				</h:dataTable>
+</h:form>
+					
+</ui:define>
+
+</ui:composition>
+</body>
+</html>
