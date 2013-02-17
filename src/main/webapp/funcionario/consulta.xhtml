@@ -20,7 +20,7 @@
 <ui:define name="conteudo">
 <h4>Agendar Consulta.</h4>
 <h:form id="agConsulta" class='form-horizontal'>
-						
+						<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Data Agendamento :" for="dt_agend"/>
 							<p:calendar value="#{consultaMBean.consulta.schedulingData}" id="dt_agend" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>

@@ -30,29 +30,26 @@
 <h:body>
     <div id="content" class="container_12" role="main">
         <div class="centralized">
-            <h1 style="text-align: center">OdontoSystem</h1>
+            <h1 style="text-align: center">Odontosystem</h1>
             
-					<h:form id="login" class='form-horizontal'>
+					<form id="login" class='form-horizontal' action="j_spring_security_check" method="post"> 
 						<h:panelGrid columns="3">
-							<h:outputLabel value="Login :" for="id_username"/>
-									<h:inputText  label="Login" maxlength="30" autofocus="" id="id_username" 
-											  value="#{loginMBean.login}" required="true" requiredMessage=" Informe o seu Login.">
-											  <f:validateLength minimum="5" maximum="50" />
+							<h:outputLabel value="Login :" for="j_username"/>
+									<h:inputText  label="Login" maxlength="30" autofocus="" 
+										id="j_username" required="true" requiredMessage=" Informe o seu Login.">
+									<f:validateLength minimum="5" maximum="50" />
 									</h:inputText>
 									<h:message for="id_username" errorStyle="color: red"/>
-							
-
-							<h:outputLabel value="Senha :" for="id_password"/>
-								<h:inputSecret id="id_password" value="#{loginMBean.senha}"
-												required="true" requiredMessage="Informe sua senha"/>
-								<h:message for="id_password" errorStyle="color: red"></h:message>
+							<h:outputLabel value="Senha :" for="j_password"/>
+									<h:inputSecret id="j_password" required="true" requiredMessage="Informe sua senha"/>
+									<h:message for="id_password" errorStyle="color: red"></h:message>
 						</h:panelGrid>
-						<h:commandButton action="#{loginMBean.efetuarLogin}" class="btn btn-primary" value="Login"/>
-					</h:form>
+						<input type="submit" value="Login" class="btn btn-primary"/>
+					</form>
             </div>
-                <hr/>
+            <hr/>
                 <ul id="bottom-nav">
-                    <li><a href="admin/cadastroUsuario.jsf">Cadastrar-me</a></li>
+                    <li><a href="cadastroUsuario.jsf">Cadastrar-me</a></li>
                 </ul>
         </div>
 </h:body>

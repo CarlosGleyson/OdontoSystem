@@ -23,9 +23,9 @@ public class ClienteDao extends OdontosystemGenericDaoImpl<Cliente>{
 
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Cliente> findAll() {
 		Query myQuery = entityManager.createQuery("SELECT c from Cliente c order by c.nome");
-		
 		List<Cliente> clientes = (List<Cliente>)myQuery.getResultList();
 		return clientes;
 	}
@@ -52,10 +52,4 @@ public class ClienteDao extends OdontosystemGenericDaoImpl<Cliente>{
 		return findByParameter(myQuery);
 		
 	}
-	
-	
-	
-	
-	
-
 }

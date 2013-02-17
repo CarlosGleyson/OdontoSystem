@@ -1,33 +1,94 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>br.com.engaplicada</groupId>
-	<artifactId>Odontosystem</artifactId>
-	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>Odontosystem Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.com.engaplicada</groupId>
+  <artifactId>Odontosystem</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>Odontosystem Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+   <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <spring.security.core.version>3.1.0.RELEASE</spring.security.core.version>
+	
 
-<!-- 	<properties> -->
-<!-- 		<org.springframework.version>3.0.6.RELEASE</org.springframework.version> -->
-<!-- 	</properties> -->
-	<repositories>
+  </properties>
+  
+  <repositories>
 		<repository>  
 		    <id>prime-repo</id>  
 		    <name>PrimeFaces Maven Repository</name>  
 		    <url>http://repository.primefaces.org</url>  
-		    <layout>default</layout>  
+		    <layout>bootstrap</layout>
 		</repository> 
 	</repositories> 
-	
-	<dependencies>
-	
-		<dependency>  
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Logger 
+    <dependency>
+    	<groupId>log4j</groupId>
+    	<artifactId>log4j</artifactId>
+    	<version>1.2.14</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    -->
+    <!-- Spring Security -->
+    <dependency>
+    	<groupId>org.springframework.security</groupId>
+    	<artifactId>spring-security-core</artifactId>
+    	<version>${spring.security.core.version}</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.security</groupId>
+    	<artifactId>spring-security-web</artifactId>
+    	<version>${spring.security.core.version}</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.security</groupId>
+    	<artifactId>spring-security-config</artifactId>
+    	<version>${spring.security.core.version}</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework.security</groupId>
+    	<artifactId>spring-security-taglibs</artifactId>
+    	<version>${spring.security.core.version}</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+     <!-- Primefaces -->
+    <dependency>  
 		    <groupId>org.primefaces</groupId>  
 		    <artifactId>primefaces</artifactId>  
 		    <version>3.4.2</version>  
 		</dependency>
 		 
+		 <dependency>  
+		    <groupId>org.primefaces.themes</groupId>  
+		    <artifactId>bootstrap</artifactId>  
+		    <version>1.0.9</version> 
+		</dependency>  
+		
+		<!-- JSF -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
@@ -43,11 +104,15 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		 <!-- JPA -->
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
+		 <!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -83,8 +148,9 @@
 			<artifactId>asm-commons</artifactId>
 			<version>3.1</version>
 		</dependency>
-	</dependencies>
-	<build>
+    
+  </dependencies>
+  <build>
 		<finalName>Odontosystem</finalName>
 
 		<plugins>
@@ -98,5 +164,7 @@
 			</plugin>
 		</plugins>
 	</build>
-
+<!--   <build> -->
+<!--     <finalName>sigeduca</finalName> -->
+<!--   </build> -->
 </project>

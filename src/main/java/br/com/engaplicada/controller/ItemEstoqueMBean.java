@@ -2,10 +2,15 @@ package br.com.engaplicada.controller;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import br.com.engaplicada.entity.ItemDeEstoque;
+import br.com.engaplicada.entity.Usuario;
 import br.com.engaplicada.service.ItemDeEstoqueService;
 import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
@@ -32,6 +37,28 @@ public class ItemEstoqueMBean extends AbstractController{
 		itemService.atualizar(item);
 		reset();
 		return null;
+	}
+	
+	public void atualizar(RowEditEvent event) throws RNException{
+		if(itemService.atualizar((ItemDeEstoque)event.getObject())){
+			FacesMessage msg = new FacesMessage("Item Atualizado!", ((ItemDeEstoque) event.getObject()).getDescricao());  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	        reset();
+		}else{
+			FacesMessage msg = new FacesMessage("Erro: Falha ao Atualizar Item!", ((ItemDeEstoque) event.getObject()).getDescricao());  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
+	}
+	
+	public void remover(RowEditEvent event) throws RNException{
+		if(itemService.remover((ItemDeEstoque)event.getObject())){
+			FacesMessage msg = new FacesMessage("Item Removido!", ((ItemDeEstoque) event.getObject()).getDescricao());  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	        reset();
+		}else{
+			FacesMessage msg = new FacesMessage("Erro: Falha ao Remover Item!", ((ItemDeEstoque) event.getObject()).getDescricao());  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		}
 	}
 	
 	public String atualizarItem() throws RNException{

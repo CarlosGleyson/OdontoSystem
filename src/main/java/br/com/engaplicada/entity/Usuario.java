@@ -1,23 +1,17 @@
 package br.com.engaplicada.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.CollectionOfElements;
+
+
 
 @Entity
-@Table(name="usuario")
+@Table(name="users")
 public class Usuario implements Serializable {
 	/**
 	 * 
@@ -25,92 +19,56 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_usuario")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idUsuario;
+	@Column(name="username",nullable=false)
+	private String login;
 	
-	@Column(name="nome", nullable=false)
-	private String nome;
-	
-	@Column(name="email", nullable=false)
-	private String email;
-	
-	@Column(name="senha", nullable=false)
+	@Column(name="password",nullable=false)
 	private String senha;
 	
-	@Column(name="login",nullable=false)
-	private String login;
+	@Column(name="authority",nullable=false)
+	private String permissao;
 	
 	@Column(name="ativo",nullable=false)
 	private boolean ativo;
 	
-	@CollectionOfElements  
-	@JoinTable(
-			name="usuario_permissao",
-			uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario","permissao"})},
-			joinColumns = @JoinColumn(name="usuario"))
-	@Column(name="permissao",length=50)
-	private Set<String> permissao = new HashSet<String>();
+	@Column(name="email", nullable=false)
+	private String email;
 	
-	public Usuario(){}
 
-	public Integer getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
+	public Usuario() {
+		super();
+	}   
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
 
 	public void setLogin(String login) {
 		this.login = login;
+	}   
+	public String getSenha() {
+		return this.senha;
 	}
 
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}   
+	public String getPermissao() {
+		return this.permissao;
+	}
+
+	public void setPermissao(String permissao) {
+		this.permissao = permissao;
+	}
 	public boolean isAtivo() {
 		return ativo;
 	}
-
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
-
-	public Set<String> getPermissao() {
-		return permissao;
+	public String getEmail() {
+		return email;
 	}
-
-	public void setPermissao(Set<String> permissao) {
-		this.permissao = permissao;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

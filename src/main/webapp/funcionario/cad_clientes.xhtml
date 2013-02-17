@@ -16,71 +16,71 @@
 </ui:define>
 
 <ui:define name="conteudo">
-<h4>Cadastrar Itens.</h4>
-<h:form id="agConsulta" class='form-horizontal'>
-<h:messages errorStyle="color:red"/>						
+<h4>Cadastrar Clientes.</h4>
+<h:form id="cadClientes" class='form-horizontal'>
+						
 						<h:panelGrid columns="3">
-							<h:outputLabel value="Descrição :" for="desc"/>
-							<h:inputText value="#{itemEstoqueMBean.item.descricao}" id="desc" required="true" requiredMessage="Informe uma Descrição"/>
-							<h:message for="desc" errorStyle="color: red"/>
+							<h:outputLabel value="Nome :" for="nome"/>
+							<h:inputText value="#{clienteMBean.cliente.nome}" id="nome" required="true" requiredMessage="Informe uma Nome!"/>
+							<h:message for="nome" errorStyle="color: red"/>
 							
-							<h:outputLabel value="Código :" for="cod"/>
-							<h:inputText value="#{itemEstoqueMBean.item.codigo}" id="cod" required="true" requiredMessage="Informe um Código"/>
-							<h:message for="cod" errorStyle="color: red"/>
+							<h:outputLabel value="Endereço :" for="end"/>
+							<h:inputText value="#{clienteMBean.cliente.endereco}" id="end" required="true" requiredMessage="Informe um Endereço!"/>
+							<h:message for="end" errorStyle="color: red"/>
 							
 							
-							<h:outputLabel value="Quantidade :" for="qtd"/>
-							<h:inputText value="#{itemEstoqueMBean.item.qtde}" id="qtd" required="true" requiredMessage="Informe uma Quantidade"/>
-							<h:message for="qtd" errorStyle="color: red"/>
+							<h:outputLabel value="Telefone :" for="fone"/>
+							<h:inputText value="#{clienteMBean.cliente.telefone}" id="fone" required="true" requiredMessage="Informe um Telefone"/>
+							<h:message for="fone" errorStyle="color: red"/>
 							
-							<h:commandButton action="#{itemEstoqueMBean.salvarItem}" class="btn btn-primary" value="Salvar!"/>
+							<h:commandButton action="#{clienteMBean.salvar}" class="btn btn-primary" value="Salvar!"/>
 												
 						</h:panelGrid>
 					</h:form>		
 
-<h:form id="listar" class='form-horizontal'>
+<h:form id="listar" class='form-horizontal' rendered="#{not empty clienteMBean.clientes}">
 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-				<p:dataTable value="#{itemEstoqueMBean.itens}" var="item" rules="rows" editable="true"
+				<p:dataTable value="#{clienteMBean.clientes}" var="cliente" rules="rows" editable="true"
 					paginator="true" rows="5"  
                  	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                  	rowsPerPageTemplate="5,10,15">
                  	
                  			 <f:facet name="header">  
-            					A Listagem a baixo exibe a relação de todos os Itens cadastrados.
+            					A Listagem a baixo exibe a relação de todos os Clientes cadastrados.
         					 </f:facet> 
         					 
-        					 <p:ajax event="rowEdit" listener="#{itemEstoqueMBean.atualizar}" update=":listar:messages" />  
-        					 <p:ajax event="rowEditCancel" listener="#{itemEstoqueMBean.remover}" update=":listar:messages" /> 
+        					 <p:ajax event="rowEdit" listener="#{clienteMBean.atualizar}" update=":listar:messages" />  
+        					 <p:ajax event="rowEditCancel" listener="#{clienteMBean.remover}" update=":listar:messages" /> 
                  			
-							<p:column headerText="Código" style="width:30%">
+							<p:column headerText="Nome" style="width:30%">
 								<p:cellEditor>  
 					                <f:facet name="output">  
-					                    <h:outputText value="#{item.codigo}" />  
+					                    <h:outputText value="#{cliente.nome}" />  
 					                </f:facet>  
 					                <f:facet name="input">  
-					                    <p:inputText value="#{item.codigo}" style="width:100%"/>  
+					                    <p:inputText value="#{cliente.nome}" style="width:100%"/>  
 					                </f:facet>  
 					            </p:cellEditor>  
 							</p:column>
 							
-							<p:column headerText="Descrição" style="width:30%">
+							<p:column headerText="Endereço" style="width:30%">
 								<p:cellEditor>  
 					                <f:facet name="output">  
-					                    <h:outputText value="#{item.descricao}" />  
+					                    <h:outputText value="#{cliente.endereco}" />  
 					                </f:facet>  
 					                <f:facet name="input">  
-					                    <p:inputText value="#{item.descricao}" style="width:100%"/>  
+					                    <p:inputText value="#{cliente.endereco}" style="width:100%"/>  
 					                </f:facet>  
 					            </p:cellEditor>  
 							</p:column>
 							
-							<p:column headerText="Quantidade" style="width:30%">
+							<p:column headerText="Telefone" style="width:30%">
 								<p:cellEditor>  
 					                <f:facet name="output">  
-					                    <h:outputText value="#{item.qtde}" />  
+					                    <h:outputText value="#{cliente.telefone}" />  
 					                </f:facet>  
 					                <f:facet name="input">  
-					                    <p:inputText value="#{item.qtde}" style="width:100%"/>  
+					                    <p:inputText value="#{cliente.telefone}" style="width:100%"/>  
 					                </f:facet>  
 					            </p:cellEditor>  
 							</p:column>

@@ -4,6 +4,7 @@
 
 package br.com.engaplicada.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -13,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.entity.Consulta;
+import br.com.engaplicada.entity.Usuario;
 import br.com.engaplicada.service.ConsultaService;
 import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
@@ -55,27 +57,50 @@ public class ConsultaMBean extends AbstractController{
 	}
 	
 	public String removerConsulta() throws RNException,RepositoryException{
-		FacesContext obj = FacesContext.getCurrentInstance();
 		if(this.cService.removerConsulta(this.consulta)){
+			FacesMessage msg = new FacesMessage("Consulta removida com sucesso!", null);  
+	        FacesContext.getCurrentInstance().addMessage(null, msg);
+	        reset();
 			return null;
 		}else{
 			FacesMessage mensagem = new FacesMessage("ERROR : Falha ao remover consulta");
-			obj.addMessage(null, mensagem);
-		}return null;
-	}
-	
-	public String agendarConsulta() throws RNException,RepositoryException{
-		FacesContext obj = FacesContext.getCurrentInstance();
-		if(this.cService.cadastrarConsulta(this.consulta)){
-			FacesMessage mensagem = new FacesMessage("Consulta Cadastrada com sucesso");
-			obj.addMessage(null, mensagem);
-			return null;
-		}else{
-			FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta");
-			obj.addMessage(null, mensagem);
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 			return null;
 		}
 	}
+	
+	public void agendarConsulta() throws RNException,RepositoryException{
+		
+		if(validaDataConsulta()){
+			if(this.cService.cadastrarConsulta(this.consulta)){
+				FacesMessage msg = new FacesMessage("Consulta Cadastrada com sucesso!", null);  
+		        FacesContext.getCurrentInstance().addMessage(null, msg);
+		        reset();
+			}else{
+				FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta",null);
+				FacesContext.getCurrentInstance().addMessage(null, mensagem);
+				reset();
+			}
+		}else{
+			FacesMessage mensagem = new FacesMessage("ERROR : Verifique as Datas !",null);
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			reset();
+		}
+	}
+
+	private boolean validaDataConsulta(){
+		Date agendamento = this.consulta.getSchedulingData();
+		Date realizacao = this.consulta.getRealizationData();
+
+		if((agendamento.after(realizacao) || realizacao.before(agendamento))||(agendamento.equals(realizacao))){
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
+	
 	
 	public String atualizarConsulta() throws RNException{
 		FacesContext obj = FacesContext.getCurrentInstance();
@@ -128,14 +153,15 @@ public class ConsultaMBean extends AbstractController{
 		}
 		
 		if(atualizou){
-			FacesMessage mensagem = new FacesMessage("Consultas Atualizadas com sucesso!");
-			obj.addMessage(null, mensagem);
+			FacesMessage mensagem = new FacesMessage("Consultas Atualizadas com sucesso!",null);
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			return null;
 		}else{
-			FacesMessage mensagem = new FacesMessage("Não ocorreram atualizações nas Consultas !");
+			FacesMessage mensagem = new FacesMessage("Não ocorreram atualizações nas Consultas !",null);
 			obj.addMessage(null, mensagem);
+			reset();
+			return null;
 		}
-		
-		return null;
 	}
 	
 //	>>>>>>>>>>>>>>>>>>>>>>  Getters and Setters  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

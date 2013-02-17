@@ -3,28 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<head>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<title>Login - OdontoSystem</title>
 
-</head>
-<body>
-<ui:composition template="templateAdmin.xhtml">
-<ui:define name="menu">
-                <ul class="nav nav-list">
-                  <li  class="active"><a href="../login.jsf"><i class="icon-book"></i>Retornar ao Login</a></li>
-                </ul>
-</ui:define>              
-<ui:define name="conteudo">     
+	
+	
+
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" href="css/app.css"/>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+    <script src="js/jquery.easing.1.3.js"/>
+    <script src="js/bootstrap.js"/>
+    <link href="css/estilo.css" rel="stylesheet"/>
+    <script src="js/calendario.js"/>
+    <script src="js/diretor.js"/>
+
+    
+    <link rel="stylesheet" type="text/css" media="all" href="css/session_new.css" />
+</h:head>
+
+<h:body>
+    <div id="content" class="container_12" role="main">
+        <div class="centralized">
+            <h1 style="text-align: center">Odontosystem</h1>
+            
 					<h:form id="cadUsuario" class='form-horizontal'>
-					<h:messages/>
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
 						<h:panelGrid columns="3">
-							<h:outputLabel value="Nome :" for="id_name"/>
-									<h:inputText  label="Nome" maxlength="30" autofocus="" id="id_name" 
-											  value="#{usuarioMBean.usuario.nome}" required="true" requiredMessage=" Informe o seu Nome.">
-											  <f:validateLength minimum="5" maximum="50" />
-									</h:inputText>
-									<h:message for="id_name" errorStyle="color: red"/>
-							
 							<h:outputLabel value="Login :" for="id_login"/>
 									<h:inputText  label="Login" maxlength="30" autofocus="" id="id_login" 
 											  value="#{usuarioMBean.usuario.login}" required="true" requiredMessage=" Escolha um Login.">
@@ -51,11 +62,24 @@
 								<h:inputSecret id="id_confirm" value="#{usuarioMBean.confirmaSenha}"
 												required="true" requiredMessage="Informe a senha novamente !"/>
 								<h:message for="id_confirm" errorStyle="color: red"></h:message>
-						<h:commandButton action="#{usuarioMBean.cadastrar}" class="btn btn-primary" value="Cadastrar !"/>
+							
+							<h:outputLabel value="Permissao :" for="permissao"/>
+							<h:selectOneMenu value="#{usuarioMBean.usuario.permissao}" id="permissao">
+								<f:selectItem itemValue="0" itemLabel="--Selecione"/>
+								<f:selectItem itemValue="ROLE_ADMIN" itemLabel="Administrador"/>
+								<f:selectItem itemValue="ROLE_USER" itemLabel="Usuario"/>
+							</h:selectOneMenu>
+						<h:commandButton action="#{usuarioMBean.cadastrar}" class="btn btn-small btn-primary" value="Cadastrar !"/>
+						
+		                
 						</h:panelGrid>
 						
 					</h:form>
-</ui:define>					
-</ui:composition>
-</body>   
+					<hr/>
+					<ul id="bottom-nav">
+		                    <li><a href="index.jsf">Voltar</a></li>
+		                </ul>
+            </div>
+        </div>
+</h:body>
 </html>

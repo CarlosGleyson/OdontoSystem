@@ -44,7 +44,12 @@
                         	 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="login.jsf">Sair do Sistema</a></li>
+                    <li>
+                    	<h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                    		<h:outputText value="Sair"/>
+                		</h:outputLink>
+                	</li>
+<!--                         <li><a href="login.jsf">Sair do Sistema</a></li> -->
                     </ul>
                 </div>
                 

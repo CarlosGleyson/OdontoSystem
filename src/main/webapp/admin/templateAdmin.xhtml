@@ -23,10 +23,6 @@
 <!--     <script src="../js/jquery.easing.1.3.js"/> -->
     <script src="../js/bootstrap.js"/>
     <link href="../css/estilo.css" rel="stylesheet"/>
-    <script src="../js/calendario.js"/>
-    <script src="../js/diretor.js"/>
-
-    
     <link rel="stylesheet" type="text/css" media="all" href="../css/session_new.css" />
 
 </h:head>
@@ -44,7 +40,12 @@
                         	 <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="login.jsf">Sair do Sistema</a></li>
+                    	<li>
+                    	<h:outputLink value="#{facesContext.externalContext.requestContextPath}/j_spring_security_logout">
+                    		<h:outputText value="Sair"/>
+                		</h:outputLink>
+                		</li>
+<!--                         <li><a href="login.jsf">Sair do Sistema</a></li> -->
                     </ul>
                 </div>
                 

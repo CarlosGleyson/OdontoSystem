@@ -1,5 +1,6 @@
 package br.com.engaplicada.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.engaplicada.dao.UsuarioDao;
@@ -8,8 +9,12 @@ import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
 
 
-public class UsuarioService {
+public class UsuarioService implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private UsuarioDao dao;
 	
 	public UsuarioService(){

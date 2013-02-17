@@ -31,28 +31,28 @@ public class ClienteService {
 	}
 
 	
-	public void atualizarCliente (Cliente c) throws RNException{
+	public boolean atualizarCliente (Cliente c) throws RNException{
 		try{
 			this.clienteDAO.update(c);
-			return;
+			return true;
 		}catch(Exception e){
 			throw new RNException("ERROR: Não foi possível atualizar dados do cliente");
 		}
 	}
 	
-	public void salvarCliente(Cliente c) throws RNException{
+	public boolean salvarCliente(Cliente c) throws RNException{
 		try{
 			this.clienteDAO.save(c);
-			return;
+			return true;
 		}catch(Exception e){
 			throw new RNException("ERROR: Não foi possível salvar os dados do cliente");
 		}
 	}
 	
-	public void removerCliente(Cliente c) throws RNException{
+	public boolean removerCliente(Cliente c) throws RNException{
 		try{
 			this.clienteDAO.delete(c);
-			return;
+			return true;
 		}catch(Exception e){
 			throw new RNException("Error: Não foi possível apagar dados do cliente");
 		}

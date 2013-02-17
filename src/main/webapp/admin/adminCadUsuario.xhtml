@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Insert title here</title>
@@ -17,18 +18,11 @@
 </ui:define>
 
 <ui:define name="conteudo">     
+					<h4>Cadastrar Usuarios.</h4>
 					<h:form id="cadUsuario" class='form-horizontal'>
 					<h:inputHidden value="#{usuarioMBean.usuario.senha}"/>
-					<h:inputHidden value="#{usuarioMBean.usuario.idUsuario}"/>
 					<h:inputHidden value="#{usuarioMBean.usuario.ativo}"/>
 						<h:panelGrid columns="3">
-							<h:outputLabel value="Nome :" for="id_name"/>
-									<h:inputText  label="Nome" maxlength="30" autofocus="" id="id_name" 
-											  value="#{usuarioMBean.usuario.nome}" required="true" requiredMessage=" Informe o seu Nome.">
-											  <f:validateLength minimum="5" maximum="50" />
-									</h:inputText>
-									<h:message for="id_name" errorStyle="color: red"/>
-							
 							<h:outputLabel value="Login :" for="id_login"/>
 									<h:inputText  label="Login" maxlength="30" autofocus="" id="id_login" 
 											  value="#{usuarioMBean.usuario.login}" required="true" requiredMessage=" Escolha um Login.">
@@ -55,44 +49,59 @@
 								<h:inputSecret id="id_confirm" value="#{usuarioMBean.confirmaSenha}"
 												required="true" requiredMessage="Informe a senha novamente !"/>
 								<h:message for="id_confirm" errorStyle="color: red"></h:message>
+							
+							<h:outputLabel value="Permissao :" for="permissao"/>
+							<h:selectOneMenu value="#{usuarioMBean.usuario.permissao}" id="permissao">
+								<f:selectItem itemValue="0" itemLabel="--Selecione"/>
+								<f:selectItem itemValue="ROLE_ADMIN" itemLabel="Administrador"/>
+								<f:selectItem itemValue="ROLE_USER" itemLabel="Usuario"/>
+							</h:selectOneMenu>
 						<h:commandButton action="#{usuarioMBean.cadastrar}" class="btn btn-primary" value="Cadastrar !"/>
-						<h:commandButton action="#{usuarioMBean.atualizarUsuario}" class="btn btn-primary" value="Atualizar !"/>
 						</h:panelGrid>
 						
 					</h:form>
 							<hr />
 					
 			<h:form id="form2">
-			<li class="nav-header"><h4>A Listagem a baixo exibe a relação de todos os Usuarios do sistema.</h4></li>
-				<h:dataTable value="#{usuarioMBean.lista}" var="usuario" rules="rows" cellpadding="10" width="" style="text-aligne:left">
-							<h:column >
-								<f:facet name="header">Nome</f:facet>
-								#{usuario.nome}
-							</h:column>
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" /> 
+				<p:dataTable value="#{usuarioMBean.lista}" var="usuario" rules="rows" editable="true"
+				  	paginator="true" rows="5"  
+                 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 	rowsPerPageTemplate="5,10,15">
+							 <f:facet name="header">  
+            					A Listagem a baixo exibe a relação de todos os Usuarios do sistema.
+        					 </f:facet>  
+        					 
+        					 <p:ajax event="rowEdit" listener="#{usuarioMBean.atualizar}" update=":form2:messages" />  
+        					 <p:ajax event="rowEditCancel" listener="#{usuarioMBean.remover}" update=":form2:messages" />
 							
-							<h:column>
-								<f:facet name="header">E-mail</f:facet>
-								#{usuario.email}
-							</h:column>
+							<p:column headerText="E-mail">
+								<p:cellEditor>  
+					                <f:facet name="output">  
+					                    <h:outputText value="#{usuario.email}" />  
+					                </f:facet>  
+					                <f:facet name="input">  
+					                    <p:inputText value="#{usuario.email}" style="width:100%"/>  
+					                </f:facet>  
+					            </p:cellEditor>
+							</p:column>
 							
-							<h:column>
-								<f:facet name="header">Login</f:facet>
-								#{usuario.login}
-							</h:column>
+							<p:column headerText="Login">
+								<p:cellEditor >  
+					                <f:facet name="output">  
+					                    <h:outputText value="#{usuario.login}" />  
+					                </f:facet>  
+					                <f:facet name="input">  
+					                    <p:inputText value="#{usuario.login}" style="width:100%"/>  
+					                </f:facet>  
+					            </p:cellEditor>
+							</p:column>
 							
-							<h:column>
-								<f:facet name="header">Editar/Remover</f:facet>
-								<h:commandLink action="#{usuarioMBean.atualizar}">
-										<img class="icon-edit"/>
-										<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>
-										<f:setPropertyActionListener target="#{usuarioMBean.destino}" value="/admin/adminCadUsuario"/>
-								</h:commandLink>
-								<h:commandLink action="#{usuarioMBean.remover}" onclick="if (!confirm('Confirma a exclusão do usuario #{usuario.nome}?')) return false;">
-									<img class="icon-remove"/>
-								<f:setPropertyActionListener target="#{usuarioMBean.usuario}" value="#{usuario}"/>	
-								</h:commandLink>
-							</h:column>
-				</h:dataTable>
+							<p:column style="width:6%">  
+            					<p:rowEditor />  
+        					</p:column>  
+				</p:dataTable>
+				
 			</h:form>
 			<hr />
 </ui:define>

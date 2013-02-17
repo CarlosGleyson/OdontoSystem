@@ -25,16 +25,16 @@ public class UsuarioDao extends OdontosystemGenericDaoImpl<Usuario>{
 	@SuppressWarnings("unchecked")
 	//@Transactional(readOnly=true)
 	public List<Usuario> findAll(){
-		String hql = "SELECT u from Usuario u order by u.nome";
+		String hql = "SELECT u from Usuario u order by u.login";
 		Query query = entityManager.createQuery(hql);
 		List<Usuario> usuario = (List<Usuario>) query.getResultList();
 		return usuario;
 	}
 
-	public Usuario findByName(String name) {
-		String hql = "SELECT u from Usuario u where nome like:nome order by u.nome";
+	public Usuario findByName(String login) {
+		String hql = "SELECT u from Usuario u where nome like:nome order by u.login";
 		Query query = entityManager.createQuery(hql);
-		query.setParameter("nome", name+"%");
+		query.setParameter("nome", login+"%");
 		return (Usuario) query.getSingleResult();
 	}
 	

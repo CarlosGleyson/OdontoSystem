@@ -59,7 +59,7 @@ public class LoginMBean extends AbstractController{
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		}
-		FacesMessage message = new FacesMessage(" FALHA NA VALIDAÇÃO : Certifique-se que você informou os dados corretamente ou cadastre-se !!");
+		FacesMessage message = new FacesMessage("Certifique-se que você informou os dados corretamente ou cadastre-se!",null);
 		obj.addMessage(null, message);
 		return "loginFail";
 	}
