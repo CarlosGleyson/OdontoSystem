@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.Query;
 
 import br.com.engaplicada.entity.Cliente;
-import br.com.engaplicada.entity.Consulta;
 
 /**
  * @author Smith Ascari

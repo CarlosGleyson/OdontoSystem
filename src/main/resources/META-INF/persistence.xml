@@ -8,6 +8,7 @@
 		<class>br.com.engaplicada.entity.Usuario</class>
 		<class>br.com.engaplicada.entity.Consulta</class>
 		<class>br.com.engaplicada.entity.Cliente</class>
+		<class>br.com.engaplicada.entity.Funcionario</class>
 		
 		<properties>
 				<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

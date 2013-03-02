@@ -33,8 +33,17 @@
     		<to-view-id>/admin/cadastroUsuario.xhtml</to-view-id>
     	</navigation-case>
     </navigation-rule>
-    
     <!--  /Login -->
+    
+    <!--  /Excluir Usuario logado -->
+    <navigation-rule>
+    	<from-view-id>adminCadUsuario.xhtml</from-view-id>
+    	<navigation-case>
+    		<from-outcome>excluirUsuarioLogado</from-outcome>
+    		<to-view-id>/index.xhtml</to-view-id>
+    	</navigation-case>
+    </navigation-rule>
+    <!--  /Excluir Usuario logado -->
     
     <!--  /Inicio -->
     

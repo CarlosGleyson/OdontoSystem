@@ -69,22 +69,25 @@ public class ConsultaMBean extends AbstractController{
 		}
 	}
 	
-	public void agendarConsulta() throws RNException,RepositoryException{
-		
+	public String agendarConsulta() throws RNException,RepositoryException{
+		FacesContext obj = FacesContext.getCurrentInstance();
 		if(validaDataConsulta()){
 			if(this.cService.cadastrarConsulta(this.consulta)){
-				FacesMessage msg = new FacesMessage("Consulta Cadastrada com sucesso!", null);  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+				FacesMessage msg = new FacesMessage("Consulta Cadastrada com sucesso!", " ");  
+				obj.addMessage(null, msg);
 		        reset();
+		        return null;
 			}else{
-				FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta",null);
-				FacesContext.getCurrentInstance().addMessage(null, mensagem);
+				FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta"," ");
+				obj.addMessage(null, mensagem);
 				reset();
+				return null;
 			}
 		}else{
-			FacesMessage mensagem = new FacesMessage("ERROR : Verifique as Datas !",null);
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			FacesMessage mensagem = new FacesMessage("ERROR : Verifique as Datas !"," ");
+			obj.addMessage(null, mensagem);
 			reset();
+			return null;
 		}
 	}
 

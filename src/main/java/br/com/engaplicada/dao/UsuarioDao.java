@@ -42,4 +42,10 @@ public class UsuarioDao extends OdontosystemGenericDaoImpl<Usuario>{
 		return (Usuario) entityManager.createQuery("SELECT u FROM Usuario u where u.login  = '"+login+"' and  u.senha = '"+senha+"'").getSingleResult();
 				
 	}
+	
+	public Usuario findUsuarioByLogin(String login){
+		Query q = entityManager.createQuery("select u from Usuario u where u.login = '"+login+"'");
+		//q.setParameter("login",login+"%");
+		return (Usuario) q.getSingleResult();
+	}
 }

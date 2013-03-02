@@ -1,5 +1,6 @@
 package br.com.engaplicada.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import br.com.engaplicada.dao.ClienteDao;
@@ -10,8 +11,12 @@ import br.com.engaplicada.util.RNException;
  * @author Smith Ascari
  *		
  */
-public class ClienteService {
+public class ClienteService implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ClienteDao clienteDAO;
 	
 	public ClienteService(){
@@ -36,7 +41,7 @@ public class ClienteService {
 			this.clienteDAO.update(c);
 			return true;
 		}catch(Exception e){
-			throw new RNException("ERROR: NÃ£o foi possÃ­vel atualizar dados do cliente");
+			throw new RNException("ERROR: Não foi possível atualizar dados do cliente");
 		}
 	}
 	
@@ -45,7 +50,7 @@ public class ClienteService {
 			this.clienteDAO.save(c);
 			return true;
 		}catch(Exception e){
-			throw new RNException("ERROR: NÃ£o foi possÃ­vel salvar os dados do cliente");
+			throw new RNException("ERROR: Não foi possível salvar os dados do cliente");
 		}
 	}
 	
@@ -54,8 +59,12 @@ public class ClienteService {
 			this.clienteDAO.delete(c);
 			return true;
 		}catch(Exception e){
-			throw new RNException("Error: NÃ£o foi possÃ­vel apagar dados do cliente");
+			throw new RNException("Error: Não foi possível apagar dados do cliente");
 		}
+	}
+	
+	public Cliente buscarClientePorNome(String nome){
+		return this.clienteDAO.findByName(nome);
 	}
 	
 }

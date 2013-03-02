@@ -99,7 +99,28 @@ public class Cliente implements Serializable {
 		return serialVersionUID;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final Cliente other = (Cliente) obj;
+		if (this.idCliente != other.idCliente) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 67 * hash + this.idCliente;
+		return hash;
+	}
 
 	
 	

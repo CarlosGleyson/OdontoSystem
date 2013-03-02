@@ -29,6 +29,10 @@ public class UsuarioService implements Serializable{
 		return dao.findByName(nome);
 	}
 	
+	public Usuario getUsuarioByLogin(String login){
+		return dao.findUsuarioByLogin(login);
+	}
+	
 	public boolean isCadastrar(Usuario usuario) throws RepositoryException, RNException{
 		 dao.update(usuario);
 		return true;

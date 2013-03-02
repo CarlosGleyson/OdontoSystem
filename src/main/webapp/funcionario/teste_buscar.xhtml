@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<body>
+<f:view>
+<p:panel header="Clientes">  
+<h:form id="form">  
+          
+        <h:panelGrid columns="2" cellpadding="5">  
+            <h:outputLabel value="Nome: " for="basicPojo"/>  
+            <p:autoComplete value="#{clienteAutoCompleteBean.cliente}" id="basicPojo" completeMethod="#{clienteAutoCompleteBean.completeCliente}"  
+                        var="c" itemLabel="#{c.nome}" itemValue="#{c}" converter="clienteConverter" forceSelection="true"/>
+        </h:panelGrid>  
+      
+  
+    <br/>  
+    
+<!--     <p:commandButton id="editButton" icon="ui-icon-pencil" update=":editForm:editPanelGrid" action="#{alunoBean.onEdit}" oncomplete="editDialog.show()"> -->
+<!--               <f:setPropertyActionListener value="#{aluno}" target="#{alunoBean.aluno}" /> -->
+<!--             </p:commandButton> -->
+    <p:commandButton value="Buscar"  update="forDisplay:display" oncomplete="dlg.show()">
+    	<f:setPropertyActionListener value="c" target="#{clienteAutoCompleteBean.cliente}" />
+    </p:commandButton>
+  
+    <p:dialog header="Cliente Selecionado:" widgetVar="dlg" showEffect="fade" hideEffect="fade" modal="true">  
+       
+        <h:form id="forDisplay">
+        <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+        <h:panelGrid columns="2" id="display">  
+        	
+            <h:outputLabel value="Nome: " for="nome"/>
+            <h:inputText id="nome" value="#{clienteAutoCompleteBean.cliente.nome}" rendered="#{not empty clienteAutoCompleteBean.cliente.nome}"/>  
+            <h:outputLabel value="Telefone: " for="telefone"/>
+            <h:inputText id="telefone" value="#{clienteAutoCompleteBean.cliente.telefone}" rendered="#{not empty clienteAutoCompleteBean.cliente.telefone}"/>
+            <h:outputLabel value="Endereco: " for="ende"/>
+            <h:inputText id="ende" value="#{clienteAutoCompleteBean.cliente.endereco}" rendered="#{not empty clienteAutoCompleteBean.cliente.endereco}"/>
+            <h:inputHidden value="#{clienteAutoCompleteBean.cliente.idCliente}" rendered="#{not empty clienteAutoCompleteBean.cliente.idCliente}"/>
+              <p:commandButton value="Editar" action="#{clienteAutoCompleteBean.atualizar}"/>  
+        </h:panelGrid>  
+     	</h:form>
+    </p:dialog>  
+</h:form>
+</p:panel>  
+</f:view>
+</body>
+</html>

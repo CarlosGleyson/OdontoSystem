@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.User;
 
 import br.com.engaplicada.entity.Usuario;
 import br.com.engaplicada.service.UsuarioService;
+import br.com.engaplicada.util.ConstantesDeNavegacao;
 import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
 
@@ -40,13 +41,14 @@ public class UsuarioMBean implements Serializable{
 		destino = "";
 		this.service = new UsuarioService();
 		reset();
-//		SecurityContext context = SecurityContextHolder.getContext();
-//        if (context instanceof SecurityContext){
-//            Authentication authentication = context.getAuthentication();
-//            if (authentication instanceof Authentication){
-//                usuario.setLogin((((User)authentication.getPrincipal()).getUsername()));
-//            }
-//        }
+		SecurityContext context = SecurityContextHolder.getContext();
+        if (context instanceof SecurityContext){
+            Authentication authentication = context.getAuthentication();
+            if (authentication instanceof Authentication){
+                usuario.setLogin((((User)authentication.getPrincipal()).getUsername()));
+                usuario = service.getUsuarioByLogin(usuario.getLogin());
+            }
+        }
 	}
 	
 	public void reset(){
@@ -101,16 +103,15 @@ public class UsuarioMBean implements Serializable{
 
 	}
 	
-	@Deprecated
 	public String atualizarUsuario()throws RNException{
 		FacesContext obj = FacesContext.getCurrentInstance();
 		if(service.isAtualizar(usuario)){
-			FacesMessage mensagem = new FacesMessage("Usuário Atualizado com Sucesso !");
+			FacesMessage mensagem = new FacesMessage("Usuário Atualizado com Sucesso !","");
 			obj.addMessage(null, mensagem);
 			reset();
 			return null;
 		}else{
-			FacesMessage mensagem = new FacesMessage(" ERRO : Falha ao atualizar o Usuario !");
+			FacesMessage mensagem = new FacesMessage(" ERRO : Falha ao atualizar o Usuario !","");
 			obj.addMessage(null, mensagem);
 			reset();
 		return null;
@@ -132,19 +133,39 @@ public class UsuarioMBean implements Serializable{
 		return service.getAllUsuarios();
 	}
 	
+	
 	public String remover(RowEditEvent event) throws RNException{
-
-	    if(service.isRemover((Usuario)event.getObject())){
-	    	FacesMessage msg = new FacesMessage("Usuario Removido!", ((Usuario) event.getObject()).getLogin());  
-		    FacesContext.getCurrentInstance().addMessage(null, msg);
-		    reset();
-		    return null;
-		}else{
-			FacesMessage msg = new FacesMessage("Erro: Falha ao Remover Usuario!", ((Usuario) event.getObject()).getLogin());  
-		    FacesContext.getCurrentInstance().addMessage(null, msg);
-		    return null;
-		}
-	    
+		
+		SecurityContext context = SecurityContextHolder.getContext();
+		String login = "";
+        if (context instanceof SecurityContext){
+            Authentication authentication = context.getAuthentication();
+            if (authentication instanceof Authentication){
+                login = (((User)authentication.getPrincipal()).getUsername());
+            }
+        }
+		
+        if(login.equals(((Usuario) event.getObject()).getLogin())){
+        	if(service.isRemover((Usuario)event.getObject())){
+//		    	FacesMessage msg = new FacesMessage("Usuario Removido!", ((Usuario) event.getObject()).getLogin());  
+//			    FacesContext.getCurrentInstance().addMessage(null, msg);
+			    reset();
+			    return "excluirUsuarioLogado";
+    	  }else{
+				FacesMessage msg = new FacesMessage("Erro: Falha ao Remover Usuario!", ((Usuario) event.getObject()).getLogin());  
+			    FacesContext.getCurrentInstance().addMessage(null, msg);
+			    return null;
+		   }
+        }else if(service.isRemover((Usuario)event.getObject())){
+			    	FacesMessage msg = new FacesMessage("Usuario Removido!", ((Usuario) event.getObject()).getLogin());  
+				    FacesContext.getCurrentInstance().addMessage(null, msg);
+				    reset();
+				    return null;
+        	  }else{
+					FacesMessage msg = new FacesMessage("Erro: Falha ao Remover Usuario!", ((Usuario) event.getObject()).getLogin());  
+				    FacesContext.getCurrentInstance().addMessage(null, msg);
+				    return null;
+			   }
 	}
 	
 	@Deprecated
