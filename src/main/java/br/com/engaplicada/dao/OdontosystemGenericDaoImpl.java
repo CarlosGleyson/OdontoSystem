@@ -1,5 +1,6 @@
 package br.com.engaplicada.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -10,8 +11,12 @@ import br.com.engaplicada.util.RepositoryException;
  * @author Paulo Antonio
  * 
  */
-public abstract class OdontosystemGenericDaoImpl<T> implements OdontosystemGenericDao<T>{
+public abstract class OdontosystemGenericDaoImpl<T> implements OdontosystemGenericDao<T>, Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected EntityManager entityManager;
 	private Class<T> entityClass;
 

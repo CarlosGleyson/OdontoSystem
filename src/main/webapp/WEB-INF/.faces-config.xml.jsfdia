@@ -1,38 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:login.xhtml" PATH="login.xhtml"
-  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:login.xhtml:0" NAME="item" PATH="login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="loginFail::loginFail.xhtml" NAME="output"
-    PATH="loginFail.xhtml" TARGET="rules:loginFail.xhtml"
-    TITLE="loginFail" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
-  <PROCESS-ITEM ID="rules:login.xhtml:1" NAME="item1" PATH="login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="cadastroUsuario::#admin#cadastroUsuario.xhtml" NAME="output"
-    PATH="/admin/cadastroUsuario.xhtml"
-    TARGET="rules:#admin#cadastroUsuario.xhtml" TITLE="cadastroUsuario" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:inicio.xhtml" PATH="inicio.xhtml"
-  SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:inicio.xhtml:0" NAME="item"
-   PATH="inicio.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="cadastro::#admin#adminCadUsuario.xhtml"
-    NAME="output" PATH="/admin/adminCadUsuario.xhtml"
-    TARGET="rules:#admin#adminCadUsuario.xhtml" TITLE="cadastro" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#admin#cadastroUsuario.xhtml"
-  PATH="/admin/cadastroUsuario.xhtml" SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:loginFail.xhtml" PATH="loginFail.xhtml"
-  SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#admin#adminCadUsuario.xhtml"
-  PATH="/admin/adminCadUsuario.xhtml" SHAPE="240,289,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:adminCadUsuario.xhtml"
-  PATH="adminCadUsuario.xhtml" SHAPE="32,385,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:adminCadUsuario.xhtml:0" NAME="item"
-   PATH="adminCadUsuario.xhtml" model-entity="JSFProcessItem">
+  PATH="/admin/adminCadUsuario.xhtml" SHAPE="240,289,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#admin#adminCadUsuario.xhtml:0" NAME="item"
+   PATH="/admin/adminCadUsuario.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="excluirUsuarioLogado::#index.xhtml"
     NAME="output" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
     TITLE="excluirUsuarioLogado" model-entity="JSFProcessItemOutput"/>
@@ -40,4 +11,25 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
   SHAPE="240,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#inicio.xhtml" PATH="/inicio.xhtml"
+  SHAPE="240,513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#funcionario#cad_clientes.xhtml"
+  PATH="/funcionario/cad_clientes.xhtml" SHAPE="32,497,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#funcionario#cad_clientes.xhtml:0" NAME="item"
+   PATH="/funcionario/cad_clientes.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="inicio::#inicio.xhtml" NAME="output"
+    PATH="/inicio.xhtml" TARGET="rules:#inicio.xhtml" TITLE="inicio" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="32,577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
+   PATH="/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="loginFail::#loginFail.xhtml" NAME="output"
+    PATH="/loginFail.xhtml" TARGET="rules:#loginFail.xhtml"
+    TITLE="loginFail" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#loginFail.xhtml" PATH="/loginFail.xhtml"
+  SHAPE="240,593,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

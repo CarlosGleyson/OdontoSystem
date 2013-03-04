@@ -18,6 +18,11 @@ public class ConsultaDao extends OdontosystemGenericDaoImpl<Consulta>{
 
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @param entityClass
 	 */
 	public ConsultaDao() {

@@ -2,20 +2,13 @@ package br.com.engaplicada.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-
 import org.primefaces.event.RowEditEvent;
 
 import br.com.engaplicada.entity.Cliente;
 import br.com.engaplicada.service.ClienteService;
+import br.com.engaplicada.util.ConstantesDeNavegacao;
 import br.com.engaplicada.util.RNException;
 
 @ManagedBean
@@ -55,33 +48,27 @@ public class ClienteMBean extends AbstractController {
 	public String salvar() throws RNException{
 		if(this.cliente != null){
 			if(service.atualizarCliente(this.cliente)){
-				FacesMessage msg = new FacesMessage("Cliente cadastrado com sucesso!", cliente.getNome());  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+				addMessageInfo("Cliente cadastrado com sucesso!", cliente.getNome());
 		        reset();
 		        return null;
 			}else{
-				FacesMessage msg = new FacesMessage("Erro: Falha ao cadastrar cliente!", cliente.getNome());  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+				addMessageInfo("Erro: Falha ao cadastrar cliente!", cliente.getNome());
 		        reset();
 		        return null;
 			}
 		}else {
-				FacesMessage msg = new FacesMessage("Erro: Falha ao cadastrar cliente, preencha os campos!", null);  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao cadastrar cliente, preencha os campos!", null);
 				return null;
 		}
 	}
 
 	public String atualizar(RowEditEvent event) throws RNException{
 		if(service.atualizarCliente((Cliente)event.getObject())){
-			FacesMessage msg = new FacesMessage("Cliente atualizado com sucesso!", ((Cliente) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Cliente atualizado com sucesso!", ((Cliente) event.getObject()).getNome());
 	        reset();
-	        
 	        return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Erro: Falha ao atualizar cliente!", ((Cliente) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao atualizar cliente!", ((Cliente) event.getObject()).getNome());
 	        reset();
 	        return null;
 		}
@@ -89,13 +76,11 @@ public class ClienteMBean extends AbstractController {
 	
 	public String remover(RowEditEvent event) throws RNException{
 		if(service.removerCliente((Cliente)event.getObject())){
-			FacesMessage msg = new FacesMessage("Cliente removido com sucesso!", ((Cliente) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Cliente removido com sucesso!", ((Cliente) event.getObject()).getNome());
 	        reset();
 	        return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Erro: Falha ao remover cliente!", ((Cliente) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao remover cliente!", ((Cliente) event.getObject()).getNome());
 	        reset();
 	        return null;
 		}
@@ -108,81 +93,25 @@ public class ClienteMBean extends AbstractController {
 			this.filteredClientes.add(clienteFiltrado);
 			return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Escolha um Cliente","");  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Escolha um Cliente","");
 	        reset();
 	        return null;
 		}
 	}
 	
-	public static ClienteAutoCompleteBean getClienteAutoCompleteBean() {  
-		Object o = getSessionAttribute("clienteAutoCompleteBean");  
-		if ((o != null) && (o instanceof ClienteAutoCompleteBean)) {  
-		  return (ClienteAutoCompleteBean) o;  
-		} else {  
-			ClienteAutoCompleteBean complete = new ClienteAutoCompleteBean();  
-		  setSessionAttribute("clienteAutoCompleteBean", complete);  
-		  return complete;  
-		}      
+	public String resetarFiltrados(){
+		this.filteredClientes = null;
+		return ConstantesDeNavegacao.INICIO;
 	}
 	
-	public static Object getSessionAttribute(String attributeName) {  
-		try {  
-		    ExternalContext ec = getExternalContext();  
-		    if (ec != null){  
-		        Map<String, Object> attrMap = ec.getSessionMap();     
-		        if (attrMap != null) {  
-		            return attrMap.get(attributeName);  
-		        } else {  
-		            return null;  
-		        }  
-		    } else {  
-		        return null;  
-		    }  
-		} catch (Exception e) {  
-		    e.printStackTrace();  
-		    return null;  
-		}  
-	}
-	
-	
-	public static void setSessionAttribute(String attributeName, Object attributeValue) {  
-		try {  
-		    ExternalContext ec = getExternalContext();  
-		    if (ec != null){  
-		        Map<String, Object> attrMap = ec.getSessionMap();     
-		        if (attrMap != null) {  
-		            attrMap.put(attributeName, attributeValue);  
-		        }   
-		    }   
-		} catch (Exception e) {  
-		    e.printStackTrace();  
-		}  
-	} 
-	
-	public static ExternalContext getExternalContext() {  
-		try {  
-		    FacesContext facesContext = FacesContext.getCurrentInstance();  
-		    if (facesContext == null) {  
-		        return null;  
-		    } else {  
-		        return facesContext.getExternalContext();  
-		    }  
-		} catch (Exception e) {  
-		    e.printStackTrace();  
-		    return null;  
-		   }      
-	}
-	
+	@Deprecated	
 	public String editarModal() throws RNException{
-		if(service.atualizarCliente(getClienteAutoCompleteBean().getCliente())){
-			FacesMessage msg = new FacesMessage("Cliente atualizado com sucesso!", (cliente.getNome()));  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+		if(service.atualizarCliente(((ClienteAutoCompleteBean)getMBean("clienteAutoCompleteBean")).getCliente())){
+			addMessageInfo("Cliente atualizado com sucesso!", (cliente.getNome()));
 	        reset();
 	        return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Erro: Falha ao atualizar cliente!", (cliente.getNome()));  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao atualizar cliente!", (cliente.getNome()));
 	        reset();
 	        return null;
 		}
@@ -236,7 +165,4 @@ public class ClienteMBean extends AbstractController {
 	public void setConverter(ClienteConverter converter) {
 		this.converter = converter;
 	}
-	
-	
-
 }

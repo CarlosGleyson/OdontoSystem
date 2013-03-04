@@ -1,10 +1,8 @@
 package br.com.engaplicada.controller;
 
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.service.LoginService;
 import br.com.engaplicada.util.ConstantesDeNavegacao;
@@ -48,8 +46,6 @@ public class LoginMBean extends AbstractController{
 	}
 
 	public String efetuarLogin(){
-		
-		FacesContext obj = FacesContext.getCurrentInstance();
 		EventoLogin evento = new EventoLogin(this.getLogin(),this.getSenha());
 		
 		try {
@@ -59,8 +55,7 @@ public class LoginMBean extends AbstractController{
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 		}
-		FacesMessage message = new FacesMessage("Certifique-se que você informou os dados corretamente ou cadastre-se!",null);
-		obj.addMessage(null, message);
+		addMessageInfo("Certifique-se que você informou os dados corretamente ou cadastre-se!",null);		
 		return "loginFail";
 	}
 	

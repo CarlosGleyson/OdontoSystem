@@ -13,6 +13,11 @@ import br.com.engaplicada.entity.ItemDeEstoque;
 
 public class ItemDeEstoqueDAO extends OdontosystemGenericDaoImpl<ItemDeEstoque>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ItemDeEstoqueDAO() {
 		super(ItemDeEstoque.class);
 	}

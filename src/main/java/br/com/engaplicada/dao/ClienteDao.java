@@ -14,6 +14,11 @@ public class ClienteDao extends OdontosystemGenericDaoImpl<Cliente>{
 
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @param entityClass
 	 */
 	public ClienteDao() {

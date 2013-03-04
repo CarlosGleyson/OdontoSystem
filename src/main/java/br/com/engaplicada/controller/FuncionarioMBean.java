@@ -3,10 +3,9 @@ package br.com.engaplicada.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -59,33 +58,27 @@ public class FuncionarioMBean extends AbstractController{
 	public String salvar() throws RNException{
 		if(this.funcionario != null){
 			if(service.atualizarFuncionario(this.funcionario)){
-				FacesMessage msg = new FacesMessage("Funcionario cadastrado com sucesso!", funcionario.getNome());  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+				addMessageInfo("Funcionario cadastrado com sucesso!", funcionario.getNome());
 		        reset();
 		        return null;
 			}else{
-				FacesMessage msg = new FacesMessage("Erro: Falha ao cadastrar Funcionario!", funcionario.getNome());  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+				addMessageInfo("Erro: Falha ao cadastrar Funcionario!", funcionario.getNome());
 		        reset();
 		        return null;
 			}
 		}else {
-				FacesMessage msg = new FacesMessage("Erro: Falha ao cadastrar cliente, preencha os campos!", null);  
-		        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao cadastrar cliente, preencha os campos!", null);
 				return null;
 		}
 	}
 
 	public String atualizar(RowEditEvent event) throws RNException{
 		if(service.atualizarFuncionario((Funcionario)event.getObject())){
-			FacesMessage msg = new FacesMessage("Funcionario atualizado com sucesso!", ((Funcionario) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Funcionario atualizado com sucesso!", ((Funcionario) event.getObject()).getNome());
 	        reset();
-	        
 	        return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Erro: Falha ao atualizar Funcionario!", ((Funcionario) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao atualizar Funcionario!", ((Funcionario) event.getObject()).getNome());
 	        reset();
 	        return null;
 		}
@@ -93,13 +86,11 @@ public class FuncionarioMBean extends AbstractController{
 	
 	public String remover(RowEditEvent event) throws RNException{
 		if(service.removerFuncionario((Funcionario)event.getObject())){
-			FacesMessage msg = new FacesMessage("Funcionario removido com sucesso!", ((Funcionario) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Funcionario removido com sucesso!", ((Funcionario) event.getObject()).getNome());
 	        reset();
 	        return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Erro: Falha ao remover Funcionario!", ((Funcionario) event.getObject()).getNome());  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Erro: Falha ao remover Funcionario!", ((Funcionario) event.getObject()).getNome());
 	        reset();
 	        return null;
 		}
@@ -112,8 +103,7 @@ public class FuncionarioMBean extends AbstractController{
 			this.funcionariosFiltrados.add(funcionarioFiltrado);
 			return null;
 		}else{
-			FacesMessage msg = new FacesMessage("Escolha um Funcionario","");  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Escolha um Funcionario","");
 	        reset();
 	        return null;
 		}

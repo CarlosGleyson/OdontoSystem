@@ -8,6 +8,11 @@ import br.com.engaplicada.entity.Funcionario;
 
 public class FuncionarioDao extends OdontosystemGenericDaoImpl<Funcionario>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public FuncionarioDao(){
 		super(Funcionario.class);
 	}

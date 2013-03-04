@@ -17,6 +17,11 @@ import br.com.engaplicada.entity.Usuario;
 //@Repository("usuarioDao")
 public class UsuarioDao extends OdontosystemGenericDaoImpl<Usuario>{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public UsuarioDao() {
 		super(Usuario.class);
 		// TODO Auto-generated constructor stub

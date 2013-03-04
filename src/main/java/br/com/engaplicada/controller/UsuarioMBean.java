@@ -147,8 +147,6 @@ public class UsuarioMBean implements Serializable{
 		
         if(login.equals(((Usuario) event.getObject()).getLogin())){
         	if(service.isRemover((Usuario)event.getObject())){
-//		    	FacesMessage msg = new FacesMessage("Usuario Removido!", ((Usuario) event.getObject()).getLogin());  
-//			    FacesContext.getCurrentInstance().addMessage(null, msg);
 			    reset();
 			    return "excluirUsuarioLogado";
     	  }else{

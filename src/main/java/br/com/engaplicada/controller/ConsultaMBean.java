@@ -7,14 +7,11 @@ package br.com.engaplicada.controller;
 import java.util.Date;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import br.com.engaplicada.entity.Consulta;
-import br.com.engaplicada.entity.Usuario;
 import br.com.engaplicada.service.ConsultaService;
 import br.com.engaplicada.util.RNException;
 import br.com.engaplicada.util.RepositoryException;
@@ -58,34 +55,28 @@ public class ConsultaMBean extends AbstractController{
 	
 	public String removerConsulta() throws RNException,RepositoryException{
 		if(this.cService.removerConsulta(this.consulta)){
-			FacesMessage msg = new FacesMessage("Consulta removida com sucesso!", null);  
-	        FacesContext.getCurrentInstance().addMessage(null, msg);
+			addMessageInfo("Consulta removida com sucesso!", null);
 	        reset();
 			return null;
 		}else{
-			FacesMessage mensagem = new FacesMessage("ERROR : Falha ao remover consulta");
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			addMessageInfo("ERROR : Falha ao remover consulta","");
 			return null;
 		}
 	}
 	
 	public String agendarConsulta() throws RNException,RepositoryException{
-		FacesContext obj = FacesContext.getCurrentInstance();
 		if(validaDataConsulta()){
 			if(this.cService.cadastrarConsulta(this.consulta)){
-				FacesMessage msg = new FacesMessage("Consulta Cadastrada com sucesso!", " ");  
-				obj.addMessage(null, msg);
+				addMessageInfo("Consulta Cadastrada com sucesso!", " ");
 		        reset();
 		        return null;
 			}else{
-				FacesMessage mensagem = new FacesMessage("ERROR : Falha ao salvar a consulta"," ");
-				obj.addMessage(null, mensagem);
+				addMessageInfo("ERROR : Falha ao salvar a consulta"," ");
 				reset();
 				return null;
 			}
 		}else{
-			FacesMessage mensagem = new FacesMessage("ERROR : Verifique as Datas !"," ");
-			obj.addMessage(null, mensagem);
+			addMessageInfo("ERROR : Verifique as Datas !"," ");
 			reset();
 			return null;
 		}
@@ -101,17 +92,11 @@ public class ConsultaMBean extends AbstractController{
 		return true;
 	}
 	
-	
-	
-	
-	
 	public String atualizarConsulta() throws RNException{
-		FacesContext obj = FacesContext.getCurrentInstance();
 		if(this.cService.atualizarCosnulta(this.consulta)){
 			return null;
 		}else{
-			FacesMessage mensagem = new FacesMessage(" ERROR : Falha ao atualizar a consulta");
-			obj.addMessage(null, mensagem);
+			addMessageInfo(" ERROR : Falha ao atualizar a consulta","");
 		return null;
 		}
 	}
@@ -144,7 +129,6 @@ public class ConsultaMBean extends AbstractController{
 	}
 	
 	public String atualizarStatusConsultas() throws RNException{
-		FacesContext obj = FacesContext.getCurrentInstance();
 		Consulta consultaBD;
 		boolean atualizou = false;
 		for(Consulta c : consultas){
@@ -156,12 +140,10 @@ public class ConsultaMBean extends AbstractController{
 		}
 		
 		if(atualizou){
-			FacesMessage mensagem = new FacesMessage("Consultas Atualizadas com sucesso!",null);
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			addMessageInfo("Consultas Atualizadas com sucesso!",null);
 			return null;
 		}else{
-			FacesMessage mensagem = new FacesMessage("Não ocorreram atualizações nas Consultas !",null);
-			obj.addMessage(null, mensagem);
+			addMessageInfo("Não ocorreram atualizações nas Consultas !",null);
 			reset();
 			return null;
 		}

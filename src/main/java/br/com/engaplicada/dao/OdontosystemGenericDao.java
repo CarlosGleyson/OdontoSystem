@@ -6,7 +6,7 @@ import br.com.engaplicada.util.RepositoryException;
 /**
  * @author Paulo Neto
  * */
-public interface OdontosystemGenericDao<T> {
+public interface OdontosystemGenericDao<T>{
 	public void save(T entity)  throws RepositoryException;
 
 	public void delete(T entity)throws RepositoryException;

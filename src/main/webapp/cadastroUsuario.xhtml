@@ -38,14 +38,14 @@
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Login :" for="id_login"/>
 									<h:inputText  label="Login" maxlength="30" autofocus="" id="id_login" 
-											  value="#{usuarioMBean.usuario.login}" required="true" requiredMessage=" Escolha um Login.">
+											  value="#{cadUsuarioMBean.usuario.login}" required="true" requiredMessage=" Escolha um Login.">
 											  <f:validateLength minimum="5" maximum="50" />
 									</h:inputText>
 									<h:message for="id_login" errorStyle="color: red"/>
 							
 							<h:outputLabel value="E-mail :" for="id_email"/>									
 							<h:inputText id="id_email" label="email"
-											style="text-align:left" value="#{usuarioMBean.usuario.email}"
+											style="text-align:left" value="#{cadUsuarioMBean.usuario.email}"
 											required="true" requiredMessage=" Informe um e-mail."
 											validatorMessage=" Informe um e-mail válido.">
 										<f:validateRegex pattern="[a-zA-Z0-9\-\_\.]+@[a-zA-Z0-9\-\_\.]+" />
@@ -54,16 +54,16 @@
 							
 
 							<h:outputLabel value="Senha :" for="id_password"/>
-								<h:inputSecret id="id_password" value="#{usuarioMBean.usuario.senha}"
+								<h:inputSecret id="id_password" value="#{cadUsuarioMBean.usuario.senha}"
 												required="true" requiredMessage="Informe sua senha"/>
 								<h:message for="id_password" errorStyle="color: red"></h:message>
 								
 							<h:outputLabel value="Confirma Senha :" for="id_confirm"/>
-								<h:inputSecret id="id_confirm" value="#{usuarioMBean.confirmaSenha}"
+								<h:inputSecret id="id_confirm" value="#{cadUsuarioMBean.confirmaSenha}"
 												required="true" requiredMessage="Informe a senha novamente !"/>
 								<h:message for="id_confirm" errorStyle="color: red"></h:message>
 							
-						<h:commandButton action="#{usuarioMBean.cadastrar}" class="btn btn-small btn-primary" value="Cadastrar !"/>
+						<h:commandButton action="#{cadUsuarioMBean.cadastrar}" class="btn btn-small btn-primary" value="Cadastrar !"/>
 						
 		                
 						</h:panelGrid>
