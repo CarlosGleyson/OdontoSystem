@@ -31,18 +31,21 @@ public class ConsultaMBean extends AbstractController{
 	private Consulta consulta;
 	private ConsultaService cService;
 	private List<Consulta> consultas;
+	private List<Consulta> consultasDeHoje;
 	
 	public ConsultaMBean(){
 		reset();
 		this.cService = new ConsultaService();
+		Date data = new Date();
+		getConsultasDeHoje(data);
 	}
 	
 	public void reset(){
 		consulta = new Consulta();
 	}
-//	Método retorna o nome da página de consulta - consulta.xhtml
-	public String novaConsulta(){
-		return "consulta";
+	
+	private void getConsultasDeHoje(Date data){
+		this.consultasDeHoje = cService.getConsultasPorDataConsulta(data);
 	}
 	
 	public String forward(){
@@ -179,5 +182,13 @@ public class ConsultaMBean extends AbstractController{
 	public void setcService(ConsultaService cService) {
 		this.cService = cService;
 	
+	}
+
+	public List<Consulta> getConsultasDeHoje() {
+		return consultasDeHoje;
+	}
+
+	public void setConsultasDeHoje(List<Consulta> consultasDeHoje) {
+		this.consultasDeHoje = consultasDeHoje;
 	}
 }

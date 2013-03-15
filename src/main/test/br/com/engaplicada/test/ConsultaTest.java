@@ -4,18 +4,24 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.engaplicada.dao.ConsultaDao;
 import br.com.engaplicada.entity.Consulta;
+import br.com.engaplicada.util.RepositoryException;
 
 public class ConsultaTest {
 	
 	private Consulta consulta;
+	private ConsultaDao dao;
 	
 	@Before
 	public void setup(){
 		this.consulta = new Consulta();
+		this.dao = new ConsultaDao();
 	}
 	
 //	@Test
@@ -38,5 +44,16 @@ public class ConsultaTest {
 	public void testAccessDataPatient(){
 		this.consulta.setPatient("siclano");
 		assertEquals(consulta.getPatient(), "siclano");
+	}
+	
+	@Test
+	public void testFindByDataAtual() throws RepositoryException{
+		Date data = new Date();
+		consulta.setRealizationData(data);
+		consulta.setPatient("paulo");
+		dao.save(consulta);
+		
+		
+		Assert.assertEquals(true,dao.findConsultaByDataConsulta(data).contains(consulta));
 	}
 }

@@ -101,7 +101,7 @@ public class ClienteMBean extends AbstractController {
 	
 	public String resetarFiltrados(){
 		this.filteredClientes = null;
-		return ConstantesDeNavegacao.INICIO;
+		return "inicio";
 	}
 	
 	@Deprecated	
