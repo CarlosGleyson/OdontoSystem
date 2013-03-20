@@ -109,6 +109,11 @@ public class FuncionarioMBean extends AbstractController{
 		}
 	}
 	
+	public String resetarFiltrado(){
+		this.funcionariosFiltrados = null;
+		this.funcionarioFiltrado = null;
+		return "/inicio?faces-redirect=true";
+	}
 	
 	public Funcionario getFuncionario() {
 		return funcionario;

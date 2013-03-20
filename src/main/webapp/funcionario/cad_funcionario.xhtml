@@ -10,18 +10,25 @@
 <body>
 <ui:composition template="/admin/templateAdmin.xhtml">
 <ui:define name="menu">
+<h:form>
 				<ul class="nav nav-list">
-                  <li  class="active"><a href="../inicio.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
+                  <li  class="active"><h:commandLink value="Retornar" action="#{funcionarioMBean.resetarFiltrado}"/></li>
                 </ul>
+</h:form>
 </ui:define>
 
 <ui:define name="conteudo">
-<h4>Cadastrar Funcionarios.</h4>
-<h:form id="cadClientes" class='form-horizontal'>
-						
+<h:form>
+<h:panelGrid columns="1" cellpadding="5">  
+	<h:commandButton id="showDialogButton" onclick="confirmation.show()"  value="Novo Funcionario!" type="button" class="btn btn-primary"/>
+</h:panelGrid>
+
+<p:confirmDialog id="confirmDialog" widgetVar="confirmation" message="Cadastrar Novo Funcionario.">
+	<h:form id="cadFuncionario" class='form-horizontal'>
+
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Nome :" for="nome"/>
-							<h:inputText value="#{funcionarioMBean.funcionario.nome}" id="nome" required="true" requiredMessage="Informe um Nome!"/>
+							<h:inputText value="#{funcionarioMBean.funcionario.nome}" id="nome" required="true" requiredMessage="Informe uma Nome!"/>
 							<h:message for="nome" errorStyle="color: red"/>
 							
 							<h:outputLabel value="Endereço :" for="end"/>
@@ -33,10 +40,17 @@
 							<h:inputText value="#{funcionarioMBean.funcionario.telefone}" id="fone" required="true" requiredMessage="Informe um Telefone"/>
 							<h:message for="fone" errorStyle="color: red"/>
 							
-							<h:commandButton action="#{funcionarioMBean.salvar}" class="btn btn-primary" value="Salvar!"/>
+
+ 							<h:commandButton action="#{funcionarioMBean.salvar}" class="btn btn-mini btn-primary" value="Salvar!"
+												id="confirm"  update="messages" oncomplete="confirmation.hide()"/>
 												
 						</h:panelGrid>
-					</h:form>		
+					</h:form>
+
+</p:confirmDialog>
+</h:form>		
+		
+		
 <hr/>
 <h:form id="formBuscar">  
         <h:panelGrid columns="3" cellpadding="5">  

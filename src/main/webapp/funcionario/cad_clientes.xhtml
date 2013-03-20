@@ -12,16 +12,20 @@
 <ui:define name="menu">
 <h:form>
 				<ul class="nav nav-list">
-                  <li  class="active"><a href="../inicio.jsf"><i class="icon-arrow-left"></i>Retornar</a></li>
-				  <li><h:commandLink action="#{clienteMBean.resetarFiltrados}" value="Retornar"/></li>
+                  <li class="active"><h:commandLink action="#{clienteMBean.resetarFiltrados}" value="Retornar"/></li>
                 </ul>
 </h:form>
 </ui:define>
 
 <ui:define name="conteudo">
-<h4>Cadastrar Clientes.</h4>
-<h:form id="cadClientes" class='form-horizontal'>
-						
+<h:form>
+<h:panelGrid columns="1" cellpadding="5">  
+	<h:commandButton id="showDialogButton" onclick="confirmation.show()"  value="Novo Cliente!" type="button" class="btn btn-primary"/>
+</h:panelGrid>
+
+<p:confirmDialog id="confirmDialog" widgetVar="confirmation" message="Cadastrar Novo Cliente.">
+	<h:form id="cadClientes" class='form-horizontal'>
+
 						<h:panelGrid columns="3">
 							<h:outputLabel value="Nome :" for="nome"/>
 							<h:inputText value="#{clienteMBean.cliente.nome}" id="nome" required="true" requiredMessage="Informe uma Nome!"/>
@@ -36,10 +40,16 @@
 							<h:inputText value="#{clienteMBean.cliente.telefone}" id="fone" required="true" requiredMessage="Informe um Telefone"/>
 							<h:message for="fone" errorStyle="color: red"/>
 							
-							<h:commandButton action="#{clienteMBean.salvar}" class="btn btn-primary" value="Salvar!"/>
+
+ 							<h:commandButton action="#{clienteMBean.salvar}" class="btn btn-mini btn-primary" value="Salvar!"
+												id="confirm"  update="messages" oncomplete="confirmation.hide()"/>
 												
 						</h:panelGrid>
-					</h:form>		
+					</h:form>
+
+</p:confirmDialog>
+</h:form>		
+		
 <hr/>
 <h:form id="formBuscar">  
         <h:panelGrid columns="3" cellpadding="5">  

@@ -4,6 +4,7 @@
 
 package br.com.engaplicada.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class ConsultaMBean extends AbstractController{
 	 */
 	private static final long serialVersionUID = 1L;
 	private Consulta consulta;
+	private Consulta consultaSelecionada;
 	private ConsultaService cService;
 	private List<Consulta> consultas;
 	private List<Consulta> consultasDeHoje;
@@ -36,12 +38,17 @@ public class ConsultaMBean extends AbstractController{
 	public ConsultaMBean(){
 		reset();
 		this.cService = new ConsultaService();
-		Date data = new Date();
-		getConsultasDeHoje(data);
+		Date hoje = new Date();
+		hoje.setHours(0);
+		hoje.setMinutes(0);
+		hoje.setSeconds(0);
+		getConsultasDeHoje(hoje);
 	}
 	
 	public void reset(){
 		consulta = new Consulta();
+		this.setConsultaSelecionada(new Consulta());
+		this.consultasDeHoje = new ArrayList<Consulta>();
 	}
 	
 	private void getConsultasDeHoje(Date data){
@@ -190,5 +197,13 @@ public class ConsultaMBean extends AbstractController{
 
 	public void setConsultasDeHoje(List<Consulta> consultasDeHoje) {
 		this.consultasDeHoje = consultasDeHoje;
+	}
+
+	public Consulta getConsultaSelecionada() {
+		return consultaSelecionada;
+	}
+
+	public void setConsultaSelecionada(Consulta consultaSelecionada) {
+		this.consultaSelecionada = consultaSelecionada;
 	}
 }

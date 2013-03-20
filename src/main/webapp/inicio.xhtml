@@ -4,11 +4,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:sec="http://www.springframework.org/security/facelets/tags">
-<head>
-</head>
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
 <body>
-<ui:composition template="admin/templateAdmin.xhtml">
+<ui:composition template="templateInterna.xhtml">
 <ui:define name="menu">
 			
 				<ul class="nav nav-list">
@@ -29,22 +28,34 @@
 
 <ui:define name="conteudo">
          <img src="img/Hiperdental_Logo.png" height="200" width="200"/>
-         <h:dataTable value="#{consultaMBean.consultasDeHoje}" var="consultas" rules="rows" class="table table-hover">
-         	<h:column>
-         		<f:facet name="Médico">
-					#{consulta.doctor}         		
-         		</f:facet>
-         	</h:column>
-         	
-         	<h:column>
-         		<f:facet name="Paciente">
-					#{consulta.doctor}         		
-         		</f:facet>
-         	</h:column>
+         <h3/>
          
-         </h:dataTable>
+         <h4>Consultas marcadas para hoje.</h4>
+          <h:dataTable id="items" value="#{consultaMBean.consultasDeHoje}" class="table table-hover"   
+			   var="con">   
+			    <h:column >   
+			          <f:facet name="header">   
+			        <h:outputText value="Médico" />   
+			          </f:facet>   
+			        <h:outputText value="#{con.doctor}"/>   
+			    </h:column>   
+			    <h:column>   
+			          <f:facet name="header">   
+			        <h:outputText value="Paciente"/>   
+			          </f:facet>   
+			        <h:outputText value="#{con.patient}"/>   
+			    </h:column> 
+			    
+			    <h:column>
+			    	<f:facet name="header">
+			    	<h:outputText value="Horário"/>
+			    	</f:facet>
+			    	<h:outputText value="#{con.horario}"/>
+			    </h:column>  
+		  </h:dataTable>   
 </ui:define>
 
 </ui:composition>
 </body>
+</f:view>
 </html>

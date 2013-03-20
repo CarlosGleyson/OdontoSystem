@@ -30,6 +30,27 @@
 							<p:calendar value="#{consultaMBean.consulta.realizationData}" id="dt_cons" showButtonPanel="true" required="true" requiredMessage="Informe uma Data"/>
 							<h:message for="dt_cons" errorStyle="color: red"/>
 							
+							<h:outputLabel value="Horário de atendimento :" for="horario"/>
+							<h:selectOneMenu value="#{consultaMBean.consulta.horario}" id="horario">
+								<f:selectItem itemValue="08:00" itemLabel="inicio as 08:00 horas"/>
+								<f:selectItem itemValue="08:30" itemLabel="inicio as 08:30 horas"/>
+								<f:selectItem itemValue="09:00" itemLabel="inicio as 09:00 horas"/>
+								<f:selectItem itemValue="09:30" itemLabel="inicio as 09:30 horas"/>
+								<f:selectItem itemValue="10:00" itemLabel="inicio as 10:00 horas"/>
+								<f:selectItem itemValue="10:30" itemLabel="inicio as 10:30 horas"/>
+								<f:selectItem itemValue="11:00" itemLabel="inicio as 11:00 horas"/>
+								<f:selectItem itemValue="11:30" itemLabel="inicio as 11:30 horas"/>
+								<f:selectItem itemValue="13:00" itemLabel="inicio as 13:00 horas"/>
+								<f:selectItem itemValue="13:30" itemLabel="inicio as 13:30 horas"/>
+								<f:selectItem itemValue="14:00" itemLabel="inicio as 14:00 horas"/>
+								<f:selectItem itemValue="14:30" itemLabel="inicio as 14:30 horas"/>
+								<f:selectItem itemValue="15:00" itemLabel="inicio as 15:00 horas"/>
+								<f:selectItem itemValue="16:30" itemLabel="inicio as 16:30 horas"/>
+								<f:selectItem itemValue="17:00" itemLabel="inicio as 17:00 horas"/>
+								<f:selectItem itemValue="17:30" itemLabel="inicio as 17:30 horas"/>
+							</h:selectOneMenu>
+							<h:message for="horario" errorStyle="color: red"/>
+							
 							<h:outputLabel value="Paciente :" for="paciente"/>
 							<h:inputText  label="Paciente" maxlength="30" autofocus="" id="paciente" 
 											  value="#{consultaMBean.consulta.patient}" required="true" requiredMessage=" Informe o nome do Paciente.">

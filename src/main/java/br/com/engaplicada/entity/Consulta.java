@@ -55,6 +55,9 @@ public class Consulta implements Serializable{
 	@Column(name="status_realizada")
 	private boolean realizada;
 	
+	@Column(name="horario")
+	private String horario;
+	
 //	>>>>>>>>>>>>>>>>>>>>>>>  Getters and Setters  <<<<<<<<<<<<<<<<<<<<<<<<<<<
 	public Usuario getUser() {
 		return user;
@@ -114,5 +117,11 @@ public class Consulta implements Serializable{
 	
 	public void setRealizada(boolean status){
 		this.realizada = status;
+	}
+	public String getHorario() {
+		return horario;
+	}
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 }

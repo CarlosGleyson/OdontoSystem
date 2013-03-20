@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 import org.primefaces.event.RowEditEvent;
 
 import br.com.engaplicada.entity.Cliente;
 import br.com.engaplicada.service.ClienteService;
-import br.com.engaplicada.util.ConstantesDeNavegacao;
 import br.com.engaplicada.util.RNException;
 
 @ManagedBean
@@ -44,7 +44,7 @@ public class ClienteMBean extends AbstractController {
         }
         return suggestions;
 	}
-	
+		
 	public String salvar() throws RNException{
 		if(this.cliente != null){
 			if(service.atualizarCliente(this.cliente)){
@@ -101,7 +101,8 @@ public class ClienteMBean extends AbstractController {
 	
 	public String resetarFiltrados(){
 		this.filteredClientes = null;
-		return "inicio";
+		this.clienteFiltrado = null;
+		return "/inicio?faces-redirect=true";
 	}
 	
 	@Deprecated	
