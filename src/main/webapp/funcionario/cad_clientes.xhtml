@@ -37,7 +37,7 @@
 							
 							
 							<h:outputLabel value="Telefone :" for="fone"/>
-							<h:inputText value="#{clienteMBean.cliente.telefone}" id="fone" required="true" requiredMessage="Informe um Telefone"/>
+							<p:inputMask value="#{clienteMBean.cliente.telefone}" id="fone" required="true" requiredMessage="Informe um Telefone" mask="(999) 9999-9999"/>
 							<h:message for="fone" errorStyle="color: red"/>
 							
 
